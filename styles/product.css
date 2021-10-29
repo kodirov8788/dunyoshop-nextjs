@@ -1,0 +1,93 @@
+.home__page {
+  background-color: #f6f6f6;
+  /* background-color: red; */
+}
+.products {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* justify-content: center; */
+  margin: 20px auto;
+  /* border: 1px solid #000; */
+  width: 90%;
+  /* background: #fff; */
+  /* box-shadow: 0 0 15px #ddd; */
+}
+@media screen and (max-width: 768px) {
+  .products {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    place-items: center;
+    margin: 20px auto;
+    border: 1px solid #000;
+    width: 95%;
+  }
+}
+.products .card {
+  margin: 10px 0;
+  width: 270px !important;
+  border: 1px solid #000;
+  margin-left: 15px;
+  transition: var(--main-transition);
+}
+.products .card:hover {
+  transform: scale(1.01);
+}
+.products .card-img-top {
+  height: 200px;
+  object-fit: cover;
+  width: 100%;
+  border: 1px solid #000;
+}
+.products .card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.products .card-text {
+  height: 70px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+
+.product__slick {
+  display: flex;
+  flex-direction: column;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  /* justify-content: center; */
+  margin: 20px auto;
+  border: 1px solid #000;
+  width: 90%;
+}
+.product__slick .card {
+  margin: 10px 0;
+  width: 270px !important;
+  border: 1px solid #000;
+  margin-left: 15px;
+  transition: var(--main-transition);
+}
+.product__slick .card:hover {
+  transform: scale(1.01);
+}
+.product__slick .card-img-top {
+  height: 230px;
+  object-fit: cover;
+  width: 100%;
+  border: 1px solid #000;
+}
+.product__slick .card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.product__slick .card-text {
+  height: 70px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+}
+/* --------- Detail Product ----------- */
+.detail_page .img-thumbnail.active {
+  border-color: orangered;
+  padding: 2px;
+}

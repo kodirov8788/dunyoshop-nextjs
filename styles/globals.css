@@ -1,5 +1,12 @@
+:root {
+  --main-color: #f3ad45;
+  --main-transition: all 0.255s ease-out;
+  --test-border: 3px solid #c3c5f5;
+}
+
 html,
 body {
+  background-color: #f6f6f6;
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -14,3 +21,135 @@ a {
 * {
   box-sizing: border-box;
 }
+
+img {
+  object-fit: cover;
+  object-position: 0 30%;
+}
+/* ----------Banner------------- */
+
+.each-slide > div {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-size: cover;
+  height: 350px;
+}
+
+.each-slide span {
+  padding: 20px;
+  font-size: 20px;
+  background: #efefef;
+  text-align: center;
+}
+/* ----------end of the Banner------------- */
+/* ---------Dark mode -------------- */
+.darkmain {
+  background-color: #4b4b4b;
+}
+
+.lightmain {
+  background-color: var(--py-white);
+}
+
+.dark {
+  background-color: var(--py-dark);
+  color: var(--py-white);
+}
+
+.light {
+  background-color: var(--py-white);
+  color: var(--py-dark);
+}
+
+.inputdark > input::placeholder {
+  color: var(--py-placeholderc);
+}
+
+.inputdark > input {
+  color: var(--py-yellow);
+}
+
+.yellowLight {
+  background-color: var(--py-yellow);
+  color: var(--py-dark);
+}
+
+.darkfiller {
+  background-color: var(--py-borderc);
+}
+
+.lightfiller {
+  background-color: var(--py-silver);
+}
+
+.lightshadow {
+  box-shadow: var(--py-boxsh);
+}
+
+.darkshadow {
+  box-shadow: var(--py-boxshd);
+}
+
+.productdark {
+  background-color: var(--py-prodark);
+}
+
+.productlight {
+  background-color: var(--py-white);
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.main__container {
+  width: 80%;
+  margin: auto;
+  height: 100%;
+}
+
+.link {
+  text-decoration: none;
+  color: var(--py-black);
+  /* background-color: #acacac; */
+}
+
+.item {
+  list-style-type: none;
+}
+
+/* ----------------------------------- */
+/* ----------- Loading ------------- */
+@import url("./loading.css");
+
+/* ----------- Products ------------- */
+@import url("./product.css");
+
+/* ----------- Profile ------------- */
+@import url("./profile.css");
+
+/* ----------- Products Manager ------------- */
+@import url("./products_manager.css");
+
+/* ----------- Navbar ------------- */
+@import url("./Navbar.css");
+
+/* ----------- MediaFooter ------------- */
+@import url("./MediaFooter.css");
+
+/* ----------- Filter ------------- */
+@import url("./filter.css");
+
+/* ----------- Banner ------------- */
+@import url("./Banner.css");
+
+/* ----------- DropDown ------------- */
+@import url("./DropDown.css");
+
+/* ----------- LanguageSelect ------------- */
+@import url("./LanguageSelect.css");
+
+/* ----------- productItem ------------- */
+@import url("./productItem.css");

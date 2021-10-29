@@ -1,0 +1,47 @@
+.mediafooter {
+  width: 100%;
+  background-color: #ccc;
+  position: fixed;
+  bottom: 0;
+  z-index: 10;
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+.mediafooter li {
+  list-style: none;
+  border-right: 1px solid #000;
+  height: 90%;
+  /* padding-left: 5%;
+  padding-right: 5%; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  width: 100%;
+}
+.mediafooter li a {
+  text-decoration: none;
+  transition: all 0.255s linear;
+}
+.mediafooter li a:hover {
+  color: var(--main-color);
+}
+.mediafooter li select {
+  appearance: none;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+}
+.mediafooter li:first-child svg {
+  width: 100%;
+  position: absolute;
+  z-index: -1;
+  font-size: 40px;
+}
+@media screen and (max-width: 768px) {
+  .mediafooter {
+    display: flex;
+  }
+}
