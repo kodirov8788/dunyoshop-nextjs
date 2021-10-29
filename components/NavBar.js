@@ -140,10 +140,10 @@ function NavBar() {
       } navbar-expand-lg`}
     >
       <Link href="/">
-        <>
+        <div className="navbar__brandContainer">
           <a className="navbar__brand">DunyoShop</a>
           <div className="navbar__dot"></div>
-        </>
+        </div>
       </Link>
       {/* <LanguageSelect /> */}
       {show && (

@@ -4,6 +4,7 @@ import { useContext } from "react";
 import { DataContext } from "../../store/GlobalState";
 import { addToCart } from "../../store/Actions";
 import { GrView } from "react-icons/gr";
+import { BsFillCartPlusFill } from "react-icons/bs";
 const ProductItem = ({ product, handleCheck }) => {
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth } = state;
@@ -14,7 +15,7 @@ const ProductItem = ({ product, handleCheck }) => {
         <Link href={`product/${product._id}`}>
           <div className="btn__view">
             <GrView />
-            <p className="">view</p>
+            <p>View</p>
           </div>
         </Link>
         <button
@@ -22,7 +23,7 @@ const ProductItem = ({ product, handleCheck }) => {
           disabled={product.inStock === 0 ? true : false}
           onClick={() => dispatch(addToCart(product, cart))}
         >
-          Buy
+          <BsFillCartPlusFill />
         </button>
       </>
     );

@@ -19,6 +19,9 @@ const Home = (props) => {
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
+  const { categories } = state;
+  console.log(categories);
+
   // console.log(products);
 
   const shirinliklar = [];
