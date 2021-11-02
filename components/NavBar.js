@@ -154,7 +154,6 @@ function NavBar() {
             <li className="nav__listItem">
               <Link href="/signin">
                 <a className={"nav__link" + isActive("/signin")}>
-                  {/* <i className="fas fa-user" aria-hidden="true"></i>  */}
                   <BiLogInCircle /> Sign in
                 </a>
               </Link>

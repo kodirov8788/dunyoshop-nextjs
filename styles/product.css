@@ -14,8 +14,24 @@
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     place-items: center;
     margin: 20px auto;
-    border: 1px solid #000;
+    /* border: 1px solid #000; */
     width: 95%;
+  }
+  .product__slick {
+    display: flex;
+    flex-direction: column;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    /* justify-content: center; */
+    margin: 10px auto;
+    /* border: 1px solid #000; */
+    width: 90%;
+  }
+  .product__slick .card {
+    margin-left: 40px;
+    width: 300px;
+    /* border: 1px solid #000; */
+    margin-left: 15px;
+    transition: var(--main-transition);
   }
 }
 .products .card {

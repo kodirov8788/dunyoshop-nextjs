@@ -3,6 +3,7 @@ import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
 import { getData } from "../utils/fetchData";
 import ProductItem from "../components/product/ProductItem";
+import ProductItemSlider from "../components/product/ProductItemSlider";
 import filterSearch from "../utils/filterSearch";
 import { useRouter } from "next/router";
 import "slick-carousel/slick/slick.css";
@@ -11,11 +12,11 @@ import Slider from "react-slick";
 import Banner from "./Banner";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
+import Youtube from "./Youtube";
 // import I18n from "./I18n";
 
 const Home = (props) => {
   const [products, setProducts] = useState(props.products);
-  const [category, setCategory] = useState(props.category);
   const [isCheck, setIsCheck] = useState(false);
   const [page, setPage] = useState(1);
   const router = useRouter();
@@ -71,6 +72,7 @@ const Home = (props) => {
       {
         breakpoint: 480,
         settings: {
+          // centerMode: true,
           slidesToShow: 1,
           slidesToScroll: 1,
           infinite: true,
@@ -130,6 +132,7 @@ const Home = (props) => {
       </Head>
       {/* <I18n /> */}
       {/* <Category /> */}
+      {/* <Youtube /> */}
 
       <Banner />
       {auth.user && auth.user.role === "admin" && (
@@ -163,7 +166,7 @@ const Home = (props) => {
           <h1>Shrinliklar</h1>
           <Slider {...settings}>
             {shirinliklar.map((product) => (
-              <ProductItem
+              <ProductItemSlider
                 key={product._id}
                 product={product}
                 handleCheck={handleCheck}
@@ -179,7 +182,7 @@ const Home = (props) => {
           <h1>technology</h1>
           <Slider {...settings}>
             {technology.map((product) => (
-              <ProductItem
+              <ProductItemSlider
                 key={product._id}
                 product={product}
                 handleCheck={handleCheck}

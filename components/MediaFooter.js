@@ -1,21 +1,28 @@
+/* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import React, { useContext, useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import filterSearch from "../utils/filterSearch";
 import { DataContext } from "../store/GlobalState";
-import { FiSearch } from "react-icons/fi";
+import { FiSearch, FiSmartphone } from "react-icons/fi";
+import { FaRegUserCircle } from "react-icons/fa";
+import { BiLogInCircle, BiCategory } from "react-icons/bi";
+import Cookie from "js-cookie";
 
-import { BiCategory } from "react-icons/bi";
 const MediaFooter = () => {
-  const { state } = useContext(DataContext);
-  const { categories } = state;
+  const { state, dispatch } = useContext(DataContext);
+  const { categories, auth } = state;
   const router = useRouter();
   const [status, setStatus] = useState(false);
   const [search, setSearch] = useState("");
   const [searchClick, setSearchClick] = useState(false);
+  const [userClick, setUserClick] = useState(false);
   const [categoryId, setCategoryId] = useState("Category");
+  const email = auth.user?.email.match(/^.+(?=@)/)[0];
+  const emailCut =
+    email?.length < 10 ? email : email?.substr(0, 11 - 1) + "...";
   // console.log("this is category", categoryId);
-  console.log("this is search", searchClick);
+  console.log("this is userClick", userClick);
   const click = () => {
     filterSearch({ router, category: null });
     setCategoryId("Category");
@@ -30,9 +37,67 @@ const MediaFooter = () => {
     e.preventDefault();
     setSearch("");
   };
+
+  // -----------------
+  const isActive = (r) => {
+    if (r === router.pathname) {
+      return " active";
+    } else {
+      return "";
+    }
+  };
+  const handleLogout = () => {
+    Cookie.remove("refreshtoken", { path: "api/auth/accessToken" });
+    localStorage.removeItem("firstLogin");
+    dispatch({ type: "AUTH", payload: {} });
+    dispatch({ type: "NOTIFY", payload: { success: "Logged out!" } });
+    return router.push("/");
+  };
+
+  const adminRouter = () => {
+    return (
+      <>
+        <Link href="/users">
+          <a className="mediaFooter__userlistItem">Users</a>
+        </Link>
+        <Link href="/create">
+          <a className="mediaFooter__userlistItem">Products</a>
+        </Link>
+        <Link href="/categories">
+          <a className="mediaFooter__userlistItem">Categories</a>
+        </Link>
+      </>
+    );
+  };
+
+  const loggedRouter = () => {
+    return (
+      <div>
+        <div className="madiaFooter__userToggle">
+          <img
+            src={auth.user.avatar}
+            alt={auth.user.avatar}
+            style={{
+              borderRadius: "50%",
+              width: "30px",
+              height: "30px",
+              // transform: "translateY(-3px)",
+              marginRight: "3px",
+            }}
+          />
+          <p className="mediaFooter__userName">{emailCut}</p>
+        </div>
+      </div>
+    );
+  };
   return (
     <div className="mediafooter">
-      <li className="mediaTask__adderSelect" onClick={() => setStatus(!status)}>
+      <li
+        className="mediaTask__adderSelect"
+        onClick={() =>
+          setStatus(!status) + setSearchClick(false) + setUserClick(false)
+        }
+      >
         <BiCategory />
         {/* <p> {categoryId} </p> */}
         <div
@@ -40,7 +105,6 @@ const MediaFooter = () => {
         >
           <div className="mediaFooter__status" onClick={click}>
             <p>All</p>
-            {/* <div className="signal"></div> */}
 
             {categoryId === "Category" || null || "" ? (
               <div className="signal"></div>
@@ -86,15 +150,64 @@ const MediaFooter = () => {
       </div>
       <li
         className="media__footerSearch"
-        onClick={() => setSearchClick(!searchClick)}
+        onClick={() =>
+          setSearchClick(!searchClick) + setStatus(false) + setUserClick(false)
+        }
       >
         <FiSearch />
       </li>
-      <li>
-        <a href="#">salom</a>
+      <div
+        className={`${
+          userClick
+            ? `${
+                auth.user?.role === "admin"
+                  ? "MediaFooter__customListAdmin"
+                  : "MediaFooter__customList"
+              }`
+            : `${
+                auth.user?.role === "admin"
+                  ? "MediaFooter__customListAdmin MediaFooter__customListAdmin__non"
+                  : "MediaFooter__customList MediaFooter__customList__non"
+              }`
+        }`}
+      >
+        <Link href="/profile">
+          <a className="mediaFooter__userlistItem">Profile</a>
+        </Link>
+        {auth.user?.role === "admin" && adminRouter()}
+        <span className="mediaFooter__userlistItem" onClick={handleLogout}>
+          Logout
+        </span>
+      </div>
+      <li
+        className="media__footerUser"
+        onClick={() =>
+          setUserClick(!userClick) + setSearchClick(false) + setStatus(false)
+        }
+      >
+        <div className="navbar__nav">
+          {Object.keys(auth).length === 0 ? (
+            <li className="nav__listItem">
+              <Link href="/signin">
+                <a className={"nav__link" + isActive("/signin")}>
+                  <BiLogInCircle /> Sign in
+                </a>
+              </Link>
+            </li>
+          ) : (
+            loggedRouter()
+          )}
+        </div>
       </li>
-      <li>
-        <a href="#">salom</a>
+      <li
+        onClick={() =>
+          setUserClick(false) + setSearchClick(false) + setStatus(false)
+        }
+      >
+        <a href="#" className="mediaFooter__contact">
+          <FiSmartphone />
+          <p>Contact</p>
+        </a>
       </li>
     </div>
   );

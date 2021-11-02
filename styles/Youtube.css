@@ -1,0 +1,11 @@
+.youtube {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  width: 20%;
+}
+.youtube__item {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border: 2px solid #000;
+}
