@@ -1,0 +1,101 @@
+.mediaFooter {
+  width: 100%;
+  background-color: #fff;
+  list-style: none;
+}
+.mediaFooter__section {
+  width: var(--main-width);
+  height: 286px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  margin: 0 auto;
+  padding-top: 50px;
+}
+.mediaFooter__section li a {
+  color: #000;
+  cursor: pointer;
+  opacity: 0.7;
+  font-size: 14px;
+  transition: all 0.255s ease-in-out;
+}
+.mediaFooter__section li:hover a {
+  opacity: 1;
+  transform: translateX(10px);
+
+  color: var(--main-color);
+}
+.mediaFooter__section li {
+  transition: all 0.255s ease-in-out;
+  list-style: none;
+  padding: 5px;
+}
+.mediaFooter__section li:hover {
+  transition: all 0.255s ease-in-out;
+  list-style: none;
+  opacity: 1;
+  color: var(--main-btnColor);
+  transform: translateX(4px);
+}
+
+.mediaFooter .Address h2 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+.mediaFooter .Address a {
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.mediaFooter .About h2 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+.mediaFooter .About a {
+  font-weight: 400;
+  line-height: 26px;
+}
+
+.mediaFooter .Shop h2 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+
+.mediaFooter .Support h2 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+
+.mediaFooter .News h2 {
+  font-size: 16px;
+  line-height: 22px;
+  margin-bottom: 10px;
+}
+.mediaFooter .News input {
+  border: none;
+  margin-left: -5px;
+  margin-top: -5px;
+}
+.mediaFooter .News button {
+  border: none;
+  width: 50px;
+  height: 20px;
+  margin-left: 50px;
+}
+.payment__imgs {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.payment__imgs img {
+  width: 80px;
+  margin: 5px;
+  cursor: pointer;
+  transition: var(--main-transition);
+}
+.payment__imgs img:hover {
+  transform: scale(1.05);
+}

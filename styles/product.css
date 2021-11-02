@@ -5,12 +5,8 @@
 .products {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  /* justify-content: center; */
   margin: 20px auto;
-  /* border: 1px solid #000; */
   width: 90%;
-  /* background: #fff; */
-  /* box-shadow: 0 0 15px #ddd; */
 }
 @media screen and (max-width: 768px) {
   .products {
@@ -25,7 +21,7 @@
 .products .card {
   margin: 10px 0;
   width: 270px !important;
-  border: 1px solid #000;
+  border: 5px solid #000;
   margin-left: 15px;
   transition: var(--main-transition);
 }
@@ -36,7 +32,7 @@
   height: 200px;
   object-fit: cover;
   width: 100%;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
 }
 .products .card-title {
   overflow: hidden;
@@ -56,13 +52,13 @@
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   /* justify-content: center; */
   margin: 20px auto;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   width: 90%;
 }
 .product__slick .card {
   margin: 10px 0;
   width: 270px !important;
-  border: 1px solid #000;
+  /* border: 1px solid #000; */
   margin-left: 15px;
   transition: var(--main-transition);
 }

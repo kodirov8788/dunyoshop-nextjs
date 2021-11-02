@@ -1,14 +1,16 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import filterSearch from "../utils/filterSearch";
 import { getData } from "../utils/fetchData";
 import { useRouter } from "next/router";
 import { BsThreeDots } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
+import { DataContext } from "../store/GlobalState";
 
-const Filter = ({ state }) => {
+const Filter = () => {
   const [search, setSearch] = useState("");
   const [sort, setSort] = useState("");
   const [category, setCategory] = useState("");
+  const { state, dispatch } = useContext(DataContext);
 
   const { categories } = state;
 
@@ -47,21 +49,6 @@ const Filter = ({ state }) => {
             ))}
           </select>
           <BsThreeDots />
-        </div>
-
-        <div className="filter__collection">
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Home</a>
-          </li>
-          <li>
-            <a href="#">Home</a>
-          </li>
         </div>
       </div>
 

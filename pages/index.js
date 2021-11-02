@@ -5,22 +5,25 @@ import { getData } from "../utils/fetchData";
 import ProductItem from "../components/product/ProductItem";
 import filterSearch from "../utils/filterSearch";
 import { useRouter } from "next/router";
-import Filter from "../components/Filter";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import Banner from "./Banner";
+import Category from "../components/Category";
+import Footer from "../components/Footer";
 // import I18n from "./I18n";
 
 const Home = (props) => {
   const [products, setProducts] = useState(props.products);
+  const [category, setCategory] = useState(props.category);
   const [isCheck, setIsCheck] = useState(false);
   const [page, setPage] = useState(1);
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
   const { categories } = state;
-  console.log(categories);
+  // console.log(categories);
+  // console.log();
 
   // console.log(products);
 
@@ -48,33 +51,33 @@ const Home = (props) => {
     cssEase: "linear",
     pauseOnHover: true,
     speed: 1000,
-    // responsive: [
-    //   {
-    //     breakpoint: 1024,
-    //     settings: {
-    //       slidesToShow: 3,
-    //       slidesToScroll: 1,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 600,
-    //     settings: {
-    //       slidesToShow: 2,
-    //       slidesToScroll: 1,
-    //     },
-    //   },
-    //   {
-    //     breakpoint: 480,
-    //     settings: {
-    //       slidesToShow: 1.3,
-    //       slidesToScroll: 1,
-    //       infinite: true,
-    //       dots: true,
-    //     },
-    //   },
-    // ],
+    responsive: [
+      {
+        breakpoint: 1024,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+      {
+        breakpoint: 600,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 1,
+        },
+      },
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          dots: true,
+        },
+      },
+    ],
   };
   // -------------------------------------------------
 
@@ -126,7 +129,7 @@ const Home = (props) => {
         <title>Home Page</title>
       </Head>
       {/* <I18n /> */}
-      <Filter state={state} />
+      {/* <Category /> */}
 
       <Banner />
       {auth.user && auth.user.role === "admin" && (
@@ -211,6 +214,8 @@ const Home = (props) => {
           Load more
         </button>
       )} */}
+
+      {/* <Footer /> */}
     </div>
   );
 };

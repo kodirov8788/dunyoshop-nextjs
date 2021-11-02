@@ -1,0 +1,80 @@
+.task__adderSelect {
+  width: 180px;
+  height: 40px;
+  background-color: var(--main-color);
+  /* margin: 0px 20px; */
+  /* border-radius: 4px; */
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+  font-size: 19px;
+  cursor: pointer;
+  user-select: none;
+}
+.task__adderSelect p {
+  margin-left: 20px;
+  margin-top: 12px;
+}
+.task__adderSelect > svg {
+  /* color: #fff; */
+  margin-right: 5px;
+  font-size: 30px;
+}
+.task__adderStatus {
+  position: absolute;
+  width: 180px;
+  height: auto;
+  background-color: #fff;
+  top: 40px;
+  border-radius: 4px;
+  transform: scaleY(1);
+  transition: all 0.1s;
+  transform-origin: top;
+  z-index: 10;
+}
+
+.status {
+  font-size: 16px;
+  color: #000;
+  padding-top: 5px;
+  padding-right: 10px;
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4;
+}
+.task__adderStatus > .status:first-child > svg {
+  color: #14e614;
+  margin-right: 5px;
+}
+.task__adderStatus > .status:nth-child(2) > svg {
+  color: #f6e608;
+  /* margin-right: 5px; */
+}
+.task__adderStatus > .status:last-child > svg {
+  color: #f84343;
+  /* margin-right: 5px; */
+}
+.status:hover {
+  background-color: #f5f5f5;
+  transform: scale(1.05);
+  border-radius: 4px;
+}
+
+.hide__status {
+  transition: all 0.2s;
+  transform-origin: top;
+  top: 45px;
+  position: absolute;
+  transform: scaleY(0);
+}
+.signal {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: red;
+}

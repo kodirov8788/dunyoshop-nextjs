@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
 import { useContext } from "react";
@@ -73,15 +74,20 @@ const ProductItem = ({ product, handleCheck }) => {
           onChange={() => handleCheck(product._id)}
         />
       )}
-      <img
-        // className="card-img-top"
-        src={product.images[0].url}
-        alt={product.images[0].url}
-      />
+      <Link href={`product/${product._id}`}>
+        <img
+          // className="card-img-top"
+          src={product.images[0].url}
+          alt={product.images[0].url}
+        />
+      </Link>
+
       <div className="product__box">
-        <h5 className="card-title text-capitalize" title={product.title}>
-          {product.title}
-        </h5>
+        <Link href={`product/${product._id}`}>
+          <h5 className="card-title text-capitalize" title={product.title}>
+            {product.title}
+          </h5>
+        </Link>
 
         <div className="row justify-content-between mx-0">
           <span>${product.price}</span>

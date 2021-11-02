@@ -6,7 +6,7 @@
 
 html,
 body {
-  background-color: #f6f6f6;
+  /* background-color: #f6f6f6; */
   padding: 0;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
@@ -43,82 +43,6 @@ img {
   text-align: center;
 }
 /* ----------end of the Banner------------- */
-/* ---------Dark mode -------------- */
-.darkmain {
-  background-color: #4b4b4b;
-}
-
-.lightmain {
-  background-color: var(--py-white);
-}
-
-.dark {
-  background-color: var(--py-dark);
-  color: var(--py-white);
-}
-
-.light {
-  background-color: var(--py-white);
-  color: var(--py-dark);
-}
-
-.inputdark > input::placeholder {
-  color: var(--py-placeholderc);
-}
-
-.inputdark > input {
-  color: var(--py-yellow);
-}
-
-.yellowLight {
-  background-color: var(--py-yellow);
-  color: var(--py-dark);
-}
-
-.darkfiller {
-  background-color: var(--py-borderc);
-}
-
-.lightfiller {
-  background-color: var(--py-silver);
-}
-
-.lightshadow {
-  box-shadow: var(--py-boxsh);
-}
-
-.darkshadow {
-  box-shadow: var(--py-boxshd);
-}
-
-.productdark {
-  background-color: var(--py-prodark);
-}
-
-.productlight {
-  background-color: var(--py-white);
-}
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
-}
-
-.main__container {
-  width: 80%;
-  margin: auto;
-  height: 100%;
-}
-
-.link {
-  text-decoration: none;
-  color: var(--py-black);
-  /* background-color: #acacac; */
-}
-
-.item {
-  list-style-type: none;
-}
 
 /* ----------------------------------- */
 /* ----------- Loading ------------- */
@@ -140,7 +64,7 @@ code {
 @import url("./MediaFooter.css");
 
 /* ----------- Filter ------------- */
-@import url("./filter.css");
+/* @import url("./filter.css"); */
 
 /* ----------- Banner ------------- */
 @import url("./Banner.css");
@@ -153,3 +77,20 @@ code {
 
 /* ----------- productItem ------------- */
 @import url("./productItem.css");
+
+/* ----------- Category ------------- */
+@import url("./Category.css");
+
+/* ----------- Search ------------- */
+@import url("./Search.css");
+
+/* ----------- Footer ------------- */
+@import url("./Footer.css");
+
+/* ----------- MediaFooter ------------- */
+@import url("./Media/MediaSubFooter.css");
+/* ----------- Footer ------------- */
+@import url("./Media/MediaNavbar.css");
+
+/* ----------- orderDetail ------------- */
+@import url("./orderDetail.css");
