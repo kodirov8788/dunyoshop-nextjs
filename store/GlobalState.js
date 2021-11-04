@@ -45,16 +45,16 @@ export const DataProvider = ({ children }) => {
   }, []);
 
   useEffect(() => {
-    const __next__cart01__devat = JSON.parse(
-      localStorage.getItem("__next__cart01__devat")
+    const next__kodirov__cart = JSON.parse(
+      localStorage.getItem("next__kodirov__cart")
     );
 
-    if (__next__cart01__devat)
-      dispatch({ type: "ADD_CART", payload: __next__cart01__devat });
+    if (next__kodirov__cart)
+      dispatch({ type: "ADD_CART", payload: next__kodirov__cart });
   }, []);
 
   useEffect(() => {
-    localStorage.setItem("__next__cart01__devat", JSON.stringify(cart));
+    localStorage.setItem("next__kodirov__cart", JSON.stringify(cart));
   }, [cart]);
 
   useEffect(() => {

@@ -22,7 +22,7 @@ const MediaFooter = () => {
   const emailCut =
     email?.length < 10 ? email : email?.substr(0, 11 - 1) + "...";
   // console.log("this is category", categoryId);
-  console.log("this is userClick", userClick);
+  // console.log("this is userClick", userClick);
   const click = () => {
     filterSearch({ router, category: null });
     setCategoryId("Category");

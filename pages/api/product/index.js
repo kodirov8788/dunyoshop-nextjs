@@ -81,8 +81,16 @@ const createProduct = async (req, res) => {
     if (result.role !== "admin")
       return res.status(400).json({ err: "Authentication is not valid." });
 
-    const { title, price, inStock, description, content, category, images } =
-      req.body;
+    const {
+      video,
+      title,
+      price,
+      inStock,
+      description,
+      content,
+      category,
+      images,
+    } = req.body;
 
     if (
       !title ||
@@ -103,6 +111,7 @@ const createProduct = async (req, res) => {
       content,
       category,
       images,
+      video,
     });
 
     await newProduct.save();

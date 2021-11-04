@@ -40,8 +40,16 @@ const updateProduct = async (req, res) => {
       return res.status(400).json({ err: "Authentication is not valid." });
 
     const { id } = req.query;
-    const { title, price, inStock, description, content, category, images } =
-      req.body;
+    const {
+      video,
+      title,
+      price,
+      inStock,
+      description,
+      content,
+      category,
+      images,
+    } = req.body;
 
     if (
       !title ||
@@ -64,6 +72,7 @@ const updateProduct = async (req, res) => {
         content,
         category,
         images,
+        video,
       }
     );
 

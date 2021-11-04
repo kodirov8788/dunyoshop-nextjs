@@ -9,17 +9,13 @@ import Youtube from "../pages/Youtube";
 
 function Layout({ children }) {
   return (
-    <div className="conta">
+    <div>
       <NavBar />
       <MediaNavBar />
       <Notify />
       <Modal />
       <MediaFooter />
-      <Link href="/youtube">
-        <a>
-          <Youtube />
-        </a>
-      </Link>
+
       {children}
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../../store/GlobalState";
@@ -13,9 +14,22 @@ const ProductsManager = () => {
     description: "",
     content: "",
     category: "",
+    video: "",
   };
   const [product, setProduct] = useState(initialState);
-  const { title, price, inStock, description, content, category } = product;
+  const { video, title, price, inStock, description, content, category } =
+    product;
+
+  // --------------- video upload--------------------
+  const [videoInput, setVideoInput] = useState(false);
+
+  useEffect(() => {
+    if (category === "618380c46eab0893e95cbb1d") {
+      setVideoInput(true);
+    } else setVideoInput(false);
+  }, [category]);
+  console.log(videoInput);
+  // --------------- end of video upload--------------------
 
   const [images, setImages] = useState([]);
 
@@ -257,6 +271,21 @@ const ProductsManager = () => {
               </div>
             ))}
           </div>
+          {videoInput ? (
+            <div className="col-sm-6">
+              <label htmlFor="video link">Video link</label>
+              <input
+                type="text"
+                name="video"
+                value={video}
+                placeholder="video link"
+                className="d-block w-100 p-2"
+                onChange={handleChangeInput}
+              />
+            </div>
+          ) : (
+            ""
+          )}
         </div>
       </form>
     </div>

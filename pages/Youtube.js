@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import ReactPlayer from "react-player/youtube";
+import Head from "next/head";
 
 const Youtube = () => {
   const [data, setData] = useState([]);
@@ -25,6 +26,9 @@ const Youtube = () => {
 
   return (
     <div>
+      <Head>
+        <title>Youtube</title>
+      </Head>
       <h1>hello Youtube</h1>
       <div className="youtube">
         {data.map((item) => (

@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useContext, useState, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
@@ -31,7 +32,7 @@ const Cart = () => {
   }, [cart]);
 
   useEffect(() => {
-    const cartLocal = JSON.parse(localStorage.getItem("__next__cart01__devat"));
+    const cartLocal = JSON.parse(localStorage.getItem("next__kodirov__cart"));
     if (cartLocal && cartLocal.length > 0) {
       let newArr = [];
       const updateCart = async () => {

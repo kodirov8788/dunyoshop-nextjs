@@ -7,9 +7,15 @@ import { postData } from "../utils/fetchData";
 import { useRouter } from "next/router";
 
 const Register = () => {
-  const initialState = { name: "", email: "", password: "", cf_password: "" };
+  const initialState = {
+    boxes: "",
+    name: "",
+    email: "",
+    password: "",
+    cf_password: "",
+  };
   const [userData, setUserData] = useState(initialState);
-  const { name, email, password, cf_password } = userData;
+  const { boxes, name, email, password, cf_password } = userData;
 
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
@@ -21,6 +27,7 @@ const Register = () => {
     setUserData({ ...userData, [name]: value });
     dispatch({ type: "NOTIFY", payload: {} });
   };
+  console.log(userData);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -30,7 +37,6 @@ const Register = () => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
 
     const res = await postData("auth/register", userData);
-
     if (res.err)
       return dispatch({ type: "NOTIFY", payload: { error: res.err } });
 
@@ -52,6 +58,17 @@ const Register = () => {
         style={{ maxWidth: "500px" }}
         onSubmit={handleSubmit}
       >
+        <div className="form-group">
+          <label htmlFor="name">boxes</label>
+          <input
+            type="text"
+            className="form-control"
+            id="boxes"
+            name="boxes"
+            value={boxes}
+            onChange={handleChangeInput}
+          />
+        </div>
         <div className="form-group">
           <label htmlFor="name">Name</label>
           <input

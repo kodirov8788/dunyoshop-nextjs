@@ -13,6 +13,8 @@ import Banner from "./Banner";
 import Category from "../components/Category";
 import Footer from "../components/Footer";
 import Youtube from "./Youtube";
+import Link from "next/link";
+import Videos from "./videos";
 // import I18n from "./I18n";
 
 const Home = (props) => {
@@ -37,9 +39,6 @@ const Home = (props) => {
   products.map((item) =>
     item.category === "617afce5aa8e7240bae36a43" ? technology.push(item) : ""
   );
-
-  // console.log(shirinliklar);
-  // console.log(technology);
 
   // -------------------------------------------------
   const settings = {
@@ -130,11 +129,11 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      {/* <I18n /> */}
-      {/* <Category /> */}
-      {/* <Youtube /> */}
+      {/* <Banner /> */}
 
-      <Banner />
+      <Link href="/videos">
+        <a> Videos</a>
+      </Link>
       {auth.user && auth.user.role === "admin" && (
         <div
           className="delete_all btn btn-danger mt-2"
@@ -161,6 +160,7 @@ const Home = (props) => {
           </button>
         </div>
       )}
+      {/* <Videos /> */}
       {shirinliklar.length !== 0 ? (
         <div className="product__slick">
           <h1>Shrinliklar</h1>
