@@ -2,9 +2,18 @@
 import Link from "next/link";
 import { patchData } from "../utils/fetchData";
 import { updateItem } from "../store/Actions";
+import { useState, useEffect } from "react";
 
 const OrderDetail = ({ orderDetail, state, dispatch }) => {
   const { auth, orders } = state;
+
+  const [orderData, setOrderData] = useState("");
+  // const [orderDetails, setOrderDetails] = useState(orderDetails);
+  // console.log(orderDetail);
+  // useEffect(() => {
+  //   setOrderDetails(orderDetails);
+  // }, []);
+  console.log("this is orderData", orderDetail);
 
   const handleDelivered = (order) => {
     dispatch({ type: "NOTIFY", payload: { loading: true } });
@@ -15,6 +24,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
       const { paid, dateOfPayment, method, delivered } = res.result;
 
+      setOrderData(delivered);
       dispatch(
         updateItem(
           orders,

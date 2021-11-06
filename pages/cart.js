@@ -38,13 +38,15 @@ const Cart = () => {
       const updateCart = async () => {
         for (const item of cartLocal) {
           const res = await getData(`product/${item._id}`);
-          const { _id, title, images, price, inStock, sold } = res.product;
+          const { _id, title, video, images, price, inStock, sold } =
+            res.product;
           if (inStock > 0) {
             newArr.push({
               _id,
               title,
               images,
               price,
+              video,
               inStock,
               sold,
               quantity: item.quantity > inStock ? 1 : item.quantity,

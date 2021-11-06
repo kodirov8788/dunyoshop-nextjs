@@ -1,12 +1,13 @@
+/* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
 import { DataContext } from "../store/GlobalState";
 import Link from "next/link";
-
+import axios from "axios";
 import valid from "../utils/valid";
 import { patchData } from "../utils/fetchData";
-
+import ReactPlayer from "react-player";
 import { imageUpload } from "../utils/imageUpload";
 
 const Profile = () => {
@@ -16,11 +17,48 @@ const Profile = () => {
     password: "",
     cf_password: "",
   };
+  const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
+  const [tab, setTab] = useState(0);
+
   const [data, setData] = useState(initialSate);
+  // const [item, setItem] = useState([]);
+  const [item2, setItem2] = useState([]);
+  const [item3, setItem3] = useState([]);
+  const [item4, setItem4] = useState([]);
+  const [item6, setItem6] = useState(false);
+  const [video, setVideo] = useState([]);
+
+  // console.log("this is item", item);
+  console.log("this is item2", item2);
+  console.log("this is item3", item3);
+  console.log("this is item4", item4);
+  console.log("this is video", video?.items);
   const { avatar, name, password, cf_password } = data;
 
   const { state, dispatch } = useContext(DataContext);
   const { auth, notify, orders } = state;
+  // console.log(orders.map((item) => item.cart));
+  // console.log("this is orders", orders);
+
+  useEffect(() => {
+    // const res = setItem(orders.map((item) => item.cart));
+    const res2 = setItem2(orders.map((item) => item));
+    return res2;
+  }, [orders]);
+  useEffect(() => {
+    const res3 = setItem3(
+      item2?.map((as) =>
+        as.delivered === true
+          ? as.cart.map((item5) =>
+              item5.title && item5.video
+                ? item5.video + setItem4(item5.video)
+                : ""
+            )
+          : ""
+      )
+    );
+    return res3;
+  }, [item2]);
 
   useEffect(() => {
     if (auth.user) setData({ ...data, name: auth.user.name });
@@ -105,6 +143,26 @@ const Profile = () => {
       return dispatch({ type: "NOTIFY", payload: { success: res.msg } });
     });
   };
+  // --------------------video -----------------------
+
+  useEffect(() => {
+    const res = axios
+      .get(`${item4}=${YOUTUBE__API__KEY}&maxResutls=3`)
+      .then((response) => {
+        setVideo(response.data) + setItem6(true);
+        console.log("video bor", response.data);
+      })
+      .catch((error) => console.log(error));
+    // if (video.items) {
+    //   console.log("video bor");
+    //   setItem6(true);
+    // } else {
+    //   console.log("video YO`Q");
+    // }
+    return res;
+  }, [item4]);
+
+  // --------------------end of the video ------------
 
   if (!auth.user) return null;
   return (
@@ -112,7 +170,6 @@ const Profile = () => {
       <Head>
         <title>Profile</title>
       </Head>
-
       <section className="row text-secondary my-2">
         <div className="col-md-4">
           <h3 className="text-center text-uppercase">
@@ -244,6 +301,42 @@ const Profile = () => {
           </div>
         </div>
       </section>
+      {/* {item3 === true ? ( */}
+      {/* {item2.map((ite) => (
+        <> */}
+      {item6 ? (
+        <div className="profile__videoSection">
+          {/* <h1>Video section</h1> */}
+
+          <div className="div">
+            <div className="profile__mainVideo">
+              {/* <h1>{ite.delivered && "true"}</h1> */}
+              <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
+                // onClick={() => setTab(index)}
+              />
+            </div>
+          </div>
+
+          <div className="profile__leftSide">
+            {video.items.map((video, index) => (
+              <button key={index} onClick={() => setTab(index)}>
+                click me {index + 1}
+              </button>
+            ))}
+            {/* <button>Click videos</button>
+            <button>Click videos</button>
+            <button>Click videos</button> */}
+          </div>
+        </div>
+      ) : (
+        ""
+      )}
+      {/* </>
+      ))} */}
+      {/* ) : (
+        ""
+      )} */}
     </div>
   );
 };

@@ -24,7 +24,7 @@ const DetailProduct = (props) => {
   const [data, setData] = useState([]);
   const [youtubeLink, setYoutubeLink] = useState("");
   // const youtube__api =
-  //   "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLt8NnwrNlZAQdsa7FINdm6UT6DrzoKw0L&key";
+  //   "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLt8NnwrNlZARINtZ8Y_QM942cO3nYiCRm&key";
   // const YOUTUBE__API__KEY = "AIzaSyDQcaS38Yawh1IeRLjyDXZ-aJKSm64qyXc";
   // useEffect(() => {
   //   setYoutubeLink(
@@ -33,22 +33,22 @@ const DetailProduct = (props) => {
   // }, []);
   // PLt8NnwrNlZAQdsa7FINdm6UT6DrzoKw0L
   console.log("first", YOUTUBE__API__KEY);
+  console.log("this is product video", product);
 
   useEffect(() => {
     const getData = async () => {
-      const res = await axios.get(
-        `${product.video}=${YOUTUBE__API__KEY}&maxResutls=3`
-      );
-      setData(res.data.items);
-      // setVideos(res);
+      if (product.category === "618380c46eab0893e95cbb1d") {
+        const res = await axios.get(
+          `${product.video}=${YOUTUBE__API__KEY}&maxResutls=3`
+        );
+
+        setData(res.data.items);
+      }
     };
     getData();
   }, []);
-  // console.log("this is product video", data[0]);
-  // ------------------end of the video section----------------
 
-  // console.log("this is product category", product.category);
-  console.log("this is product video", product.video);
+  console.log("this is data", data);
 
   return (
     <div className="row detail_page">
