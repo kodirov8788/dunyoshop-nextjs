@@ -19,43 +19,68 @@ const Profile = () => {
   };
   const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
   const [tab, setTab] = useState(0);
+  const [tab2, setTab2] = useState(0);
 
+  console.log("tab2", tab2);
   const [data, setData] = useState(initialSate);
-  // const [item, setItem] = useState([]);
   const [item2, setItem2] = useState([]);
   const [item3, setItem3] = useState([]);
   const [item4, setItem4] = useState([]);
+  const [item5, setItem5] = useState(false);
   const [item6, setItem6] = useState(false);
   const [video, setVideo] = useState([]);
+  const box = item3.filter((pro) => pro.length !== 0);
+  const box2 = box.map((pro) => pro.map((it) => it.video));
+  // const box5 = [];
+  // const box6 = [];
 
-  // console.log("this is item", item);
-  console.log("this is item2", item2);
-  console.log("this is item3", item3);
-  console.log("this is item4", item4);
+  // useEffect(() => {
+  //   const res3 = box6.push(...box3, ...box5);
+  //   return res3;
+  // }, []);
+
+  // const box6 = [];
+  const box3 = box2.filter((box22) => box22.length === 1);
+  const box4 = box2.filter(
+    (box22) =>
+      box22.length !== 1 && box22.map((item) => box3.push(new Array(item)))
+  );
+
+  // console.log("this is box6", box6);
+  console.log("this is box", box);
+  console.log("this is box2", box2);
+  console.log("this is box3", box3);
+  console.log("this is box4", box4);
+  // console.log("this is box5", box5);
+  // console.log("this is item2", item2);
+  // console.log("this is item3", item3);
+  // ? as.cart.map((item5) =>
+  //   item5.title && item5.video
+  //   ? item5.video + setItem4(item5.video)
+  //   : ""
+  // )
+  // : ""
+  // console.log("this is item4", item4);
+  console.log("this is item6", item6);
   console.log("this is video", video?.items);
+  // console.log("this is video details", video?.items.snippet);
   const { avatar, name, password, cf_password } = data;
 
   const { state, dispatch } = useContext(DataContext);
   const { auth, notify, orders } = state;
-  // console.log(orders.map((item) => item.cart));
-  // console.log("this is orders", orders);
-
   useEffect(() => {
-    // const res = setItem(orders.map((item) => item.cart));
     const res2 = setItem2(orders.map((item) => item));
     return res2;
   }, [orders]);
+
   useEffect(() => {
     const res3 = setItem3(
-      item2?.map((as) =>
-        as.delivered === true
-          ? as.cart.map((item5) =>
-              item5.title && item5.video
-                ? item5.video + setItem4(item5.video)
-                : ""
-            )
-          : ""
-      )
+      item2
+        ?.filter((as) => as.delivered === true)
+        .map((cartWrap) =>
+          cartWrap?.cart.filter((cartInner) => cartInner.video)
+        )
+      // .filter()
     );
     return res3;
   }, [item2]);
@@ -146,21 +171,22 @@ const Profile = () => {
   // --------------------video -----------------------
 
   useEffect(() => {
-    const res = axios
-      .get(`${item4}=${YOUTUBE__API__KEY}&maxResutls=3`)
-      .then((response) => {
-        setVideo(response.data) + setItem6(true);
-        console.log("video bor", response.data);
-      })
-      .catch((error) => console.log(error));
-    // if (video.items) {
-    //   console.log("video bor");
-    //   setItem6(true);
-    // } else {
-    //   console.log("video YO`Q");
-    // }
-    return res;
-  }, [item4]);
+    const timer = setTimeout(() => {
+      const res = axios
+        .get(`${box3[tab2]}=${YOUTUBE__API__KEY}&maxResutls=99`)
+        .then((response) => {
+          setVideo(response?.data);
+          +setItem6(true);
+          console.log("video bor", response.data);
+        })
+        .catch((error) =>
+          error ? console.log("video yoq") : console.log("ok")
+        );
+
+      return res;
+    }, 2000);
+    return () => clearTimeout(timer);
+  }, [box3 + tab2]);
 
   // --------------------end of the video ------------
 
@@ -305,10 +331,10 @@ const Profile = () => {
       {/* {item2.map((ite) => (
         <> */}
       {item6 ? (
-        <div className="profile__videoSection">
-          {/* <h1>Video section</h1> */}
+        <>
+          <div className="profile__videoSection">
+            {/* <h1>Video section</h1> */}
 
-          <div className="div">
             <div className="profile__mainVideo">
               {/* <h1>{ite.delivered && "true"}</h1> */}
               <ReactPlayer
@@ -316,19 +342,26 @@ const Profile = () => {
                 // onClick={() => setTab(index)}
               />
             </div>
-          </div>
 
-          <div className="profile__leftSide">
-            {video.items.map((video, index) => (
-              <button key={index} onClick={() => setTab(index)}>
-                click me {index + 1}
-              </button>
-            ))}
-            {/* <button>Click videos</button>
+            <div className="profile__leftSide">
+              {video.items.map((video, index) => (
+                <button key={index} onClick={() => setTab(index)}>
+                  click me {index + 1}
+                </button>
+              ))}
+              {/* <button>Click videos</button>
             <button>Click videos</button>
             <button>Click videos</button> */}
+            </div>
           </div>
-        </div>
+          <div className="profile__videoDivider">
+            {box3.map((video, ind) => (
+              <button key={ind} onClick={() => setTab2(ind)}>
+                click me {ind + 1}
+              </button>
+            ))}
+          </div>
+        </>
       ) : (
         ""
       )}
