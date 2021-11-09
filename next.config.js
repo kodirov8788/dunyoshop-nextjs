@@ -10,6 +10,10 @@ module.exports = {
     CLOUD_UPDATE_PRESET: "goodle_nextjs",
     CLOUD_NAME: "goodle-next",
     CLOUD_API: "https://api.cloudinary.com/v1_1/goodle/image/upload",
-    YOUTUBE__API__KEY: "AIzaSyDQcaS38Yawh1IeRLjyDXZ-aJKSm64qyXc",
+    YOUTUBE__API__KEY: "AIzaSyBKSBW816sp8gUnYi-bQFbNqszB0TtRgy4",
+  },
+  i18n: {
+    locales: ["en", "uz"],
+    defaultLocale: "uz",
   },
 };

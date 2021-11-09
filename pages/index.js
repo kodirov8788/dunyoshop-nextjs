@@ -16,7 +16,8 @@ import Youtube from "./Youtube";
 import Link from "next/link";
 import Videos from "./videos";
 // import I18n from "./I18n";
-
+import en from "../locales/en";
+import uz from "../locales/uz";
 const Home = (props) => {
   const [products, setProducts] = useState(props.products);
   const [isCheck, setIsCheck] = useState(false);
@@ -25,6 +26,10 @@ const Home = (props) => {
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
   const { categories } = state;
+
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
+  console.log("home page", locale);
   // console.log(categories);
   // console.log();
 
@@ -129,11 +134,11 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      {/* <Banner /> */}
+      <Banner />
 
-      <Link href="/videos">
+      {/* <Link href="/videos">
         <a> Videos</a>
-      </Link>
+      </Link> */}
       {auth.user && auth.user.role === "admin" && (
         <div
           className="delete_all btn btn-danger mt-2"
@@ -163,7 +168,7 @@ const Home = (props) => {
       {/* <Videos /> */}
       {shirinliklar.length !== 0 ? (
         <div className="product__slick">
-          <h1>Shrinliklar</h1>
+          <h1>{t.product}</h1>
           <Slider {...settings}>
             {shirinliklar.map((product) => (
               <ProductItemSlider

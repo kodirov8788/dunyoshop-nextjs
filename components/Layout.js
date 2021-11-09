@@ -5,7 +5,7 @@ import Modal from "./Modal";
 import MediaFooter from "./MediaFooter";
 import MediaNavBar from "./Media/MediaNavBar";
 import Link from "next/link";
-import Youtube from "../pages/Youtube";
+import LanguageSelect from "../pages/LanguageSelect";
 
 function Layout({ children }) {
   return (
@@ -15,7 +15,7 @@ function Layout({ children }) {
       <Notify />
       <Modal />
       <MediaFooter />
-
+      {/* <LanguageSelect /> */}
       {children}
     </div>
   );

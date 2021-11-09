@@ -17,41 +17,20 @@ const Profile = () => {
     password: "",
     cf_password: "",
   };
+  const scrollTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
   const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
   const [tab, setTab] = useState(0);
   const [tab2, setTab2] = useState(0);
 
-  console.log("tab2", tab2);
+  // console.log("tab2", tab2);
   const [data, setData] = useState(initialSate);
   const [item2, setItem2] = useState([]);
   const [item3, setItem3] = useState([]);
-  const [item4, setItem4] = useState([]);
-  const [item5, setItem5] = useState(false);
   const [item6, setItem6] = useState(false);
   const [video, setVideo] = useState([]);
   const box = item3.filter((pro) => pro.length !== 0);
-  const box2 = box.map((pro) => pro.map((it) => it.video));
-  // const box5 = [];
-  // const box6 = [];
-
-  // useEffect(() => {
-  //   const res3 = box6.push(...box3, ...box5);
-  //   return res3;
-  // }, []);
-
-  // const box6 = [];
-  const box3 = box2.filter((box22) => box22.length === 1);
-  const box4 = box2.filter(
-    (box22) =>
-      box22.length !== 1 && box22.map((item) => box3.push(new Array(item)))
-  );
-
-  // console.log("this is box6", box6);
-  console.log("this is box", box);
-  console.log("this is box2", box2);
-  console.log("this is box3", box3);
-  console.log("this is box4", box4);
-  // console.log("this is box5", box5);
   // console.log("this is item2", item2);
   // console.log("this is item3", item3);
   // ? as.cart.map((item5) =>
@@ -61,9 +40,21 @@ const Profile = () => {
   // )
   // : ""
   // console.log("this is item4", item4);
-  console.log("this is item6", item6);
+  // console.log("this is item6", item6);
   console.log("this is video", video?.items);
   // console.log("this is video details", video?.items.snippet);
+
+  // -------------Video and Rasm ------------------
+  const pr = box.map((pro) => pro.filter((it) => it.video));
+  const pr2 = pr.filter((pi) => pi.length !== 0);
+  const pr3 = pr2.filter((box22) => box22.length === 1);
+  const pr4 = pr2.filter(
+    (box22) =>
+      box22.length !== 1 && box22.map((item) => pr3.push(new Array(item)))
+  );
+  const pr5 = pr3.map((pr3inner) => pr3inner[0]);
+  const pr6 = pr5.map((pr5inner) => pr5inner.video);
+  // ----------------------------------
   const { avatar, name, password, cf_password } = data;
 
   const { state, dispatch } = useContext(DataContext);
@@ -173,7 +164,9 @@ const Profile = () => {
   useEffect(() => {
     const timer = setTimeout(() => {
       const res = axios
-        .get(`${box3[tab2]}=${YOUTUBE__API__KEY}&maxResutls=99`)
+        .get(
+          `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${pr6[tab2]}&key=${YOUTUBE__API__KEY}&maxResults=99`
+        )
         .then((response) => {
           setVideo(response?.data);
           +setItem6(true);
@@ -186,7 +179,7 @@ const Profile = () => {
       return res;
     }, 2000);
     return () => clearTimeout(timer);
-  }, [box3 + tab2]);
+  }, [pr6 + tab2]);
 
   // --------------------end of the video ------------
 
@@ -327,49 +320,53 @@ const Profile = () => {
           </div>
         </div>
       </section>
-      {/* {item3 === true ? ( */}
-      {/* {item2.map((ite) => (
-        <> */}
       {item6 ? (
         <>
           <div className="profile__videoSection">
-            {/* <h1>Video section</h1> */}
-
             <div className="profile__mainVideo">
-              {/* <h1>{ite.delivered && "true"}</h1> */}
               <ReactPlayer
+                style={{ width: "100%" }}
+                width="100%"
+                height="500px"
+                playing
+                // playIcon={<button>Play</button>}
                 url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
                 // onClick={() => setTab(index)}
               />
             </div>
-
             <div className="profile__leftSide">
               {video.items.map((video, index) => (
-                <button key={index} onClick={() => setTab(index)}>
+                <button
+                  key={index}
+                  onClick={() => {
+                    setTab(index);
+                    // + scrollTop();
+                  }}
+                >
                   click me {index + 1}
                 </button>
               ))}
-              {/* <button>Click videos</button>
-            <button>Click videos</button>
-            <button>Click videos</button> */}
             </div>
           </div>
           <div className="profile__videoDivider">
-            {box3.map((video, ind) => (
-              <button key={ind} onClick={() => setTab2(ind)}>
-                click me {ind + 1}
-              </button>
+            {pr5.map((pr5inner, ind) => (
+              <>
+                <button
+                  style={{
+                    backgroundImage: `url(${pr5inner.images[0].url}`,
+                  }}
+                  key={ind}
+                  onClick={() => setTab2(ind)}
+                >
+                  {pr5inner.title}
+                </button>
+              </>
             ))}
           </div>
         </>
       ) : (
         ""
       )}
-      {/* </>
-      ))} */}
-      {/* ) : (
-        ""
-      )} */}
     </div>
   );
 };

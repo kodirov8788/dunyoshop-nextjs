@@ -6,8 +6,12 @@ import { DataContext } from "../../store/GlobalState";
 import { addToCart } from "../../store/Actions";
 import axios from "axios";
 import ReactPlayer from "react-player";
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import uz from "../../locales/uz";
 
 const DetailProduct = (props) => {
+  const router = useRouter();
   const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
 
   const [product] = useState(props.product);
@@ -33,13 +37,13 @@ const DetailProduct = (props) => {
   // }, []);
   // PLt8NnwrNlZAQdsa7FINdm6UT6DrzoKw0L
   console.log("first", YOUTUBE__API__KEY);
-  console.log("this is product video", product);
+  console.log("this is product video", product.video);
 
   useEffect(() => {
     const getData = async () => {
       if (product.category === "618380c46eab0893e95cbb1d") {
         const res = await axios.get(
-          `${product.video}=${YOUTUBE__API__KEY}&maxResutls=3`
+          `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${product.video}&key=${YOUTUBE__API__KEY}&maxResutls=99`
         );
 
         setData(res.data.items);
@@ -48,12 +52,14 @@ const DetailProduct = (props) => {
     getData();
   }, []);
 
-  console.log("this is data", data);
-
+  // console.log("this is data", data);
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
+  console.log("Product", locale);
   return (
     <div className="row detail_page">
       <Head>
-        <title>Detail Product</title>
+        <title>{t.title}</title>
       </Head>
       {product.category === "618380c46eab0893e95cbb1d" ? (
         <ReactPlayer
@@ -105,7 +111,7 @@ const DetailProduct = (props) => {
           className="btn btn-dark d-block my-3 px-5"
           onClick={() => dispatch(addToCart(product, cart))}
         >
-          Buy
+          {t.productBtn}
         </button>
       </div>
     </div>

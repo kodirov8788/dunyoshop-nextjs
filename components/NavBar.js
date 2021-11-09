@@ -9,17 +9,19 @@ import Cookie from "js-cookie";
 import { BsCartPlus, BsThreeDots } from "react-icons/bs";
 import { FiSearch } from "react-icons/fi";
 import { AiOutlineMenu } from "react-icons/ai";
-import { useTranslation } from "react-i18next";
-
 import filterSearch from "../utils/filterSearch";
 import { BiLogInCircle } from "react-icons/bi";
 import Category from "./Category";
 import Search from "./Search";
 import Filter from "./Filter";
 // import LanguageSelect from "./LanguageSelect";
+import en from "../locales/en";
+import uz from "../locales/uz";
+import LanguageSelect from "../pages/LanguageSelect";
 function NavBar() {
-  // const { t, i18n } = useTranslation();
+  // const { t } = useTranslation();
   const router = useRouter();
+
   const { state, dispatch } = useContext(DataContext);
   const { auth, cart } = state;
   const [show, setShow] = useState(false);
@@ -115,74 +117,80 @@ function NavBar() {
     );
   };
 
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
+  // console.log(language);
   return (
-    <nav
-      className={`${
-        !show ? "navbar" : "navbar navbar__color"
-      } navbar-expand-lg`}
-    >
-      <Link href="/">
-        <div className="navbar__brandContainer">
-          <a className="navbar__brand">DunyoShop</a>
-          <div className="navbar__dot"></div>
-        </div>
-      </Link>
+    <>
+      <nav
+        className={`${
+          !show ? "navbar" : "navbar navbar__color"
+        } navbar-expand-lg`}
+      >
+        <Link href="/">
+          <div className="navbar__brandContainer">
+            <a className="navbar__brand">DunyoShop</a>
+            <div className="navbar__dot"></div>
+          </div>
+        </Link>
 
-      <div className="navbar__filter">
-        <Category />
-        <Search />
-      </div>
-
-      <div className="nav__menu">
-        <div className="navbar__cart">
-          <Link href="/cart">
-            <a className={"navbar__cartLink" + isActive("/cart")}>
-              <BsCartPlus />
-              <b>{cart.length}</b>
-            </a>
-          </Link>
+        <div className="navbar__filter">
+          <Category />
+          <Search />
         </div>
-        <button
-          className="navbar__toggler"
-          onClick={() => setClick(!click)}
-          type="button"
-        >
-          <AiOutlineMenu />
-        </button>
-        <div className="navbar__nav">
-          {Object.keys(auth).length === 0 ? (
-            <li className="nav__listItem">
-              <Link href="/signin">
-                <a className={"nav__link" + isActive("/signin")}>
-                  <BiLogInCircle /> Sign in
-                </a>
-              </Link>
-            </li>
-          ) : (
-            loggedRouter()
-          )}
-        </div>
-        <a href="tel:+998939427899" className="nav__phone">
-          <h4>(93) 942-78-99</h4>
-          {/* <h5>{t("Contact__Number")}</h5> */}
-        </a>
-      </div>
 
-      <div className={click ? "nav__mediaMenuPlus" : "nav__mediaMenu"}>
-        <li onClick={() => setClick(false)}>
-          <a href="#">About Us</a>
-        </li>
-        <li onClick={() => setClick(false)}>
-          <a href="#">About Us</a>
-        </li>
-        <li onClick={() => setClick(false)}>
-          <a href="#">About Us</a>
-        </li>
-        <li onClick={() => setClick(false)}>
-          <a href="#">About Us</a>
-        </li>
-      </div>
-    </nav>
+        <div className="nav__menu">
+          <div className="navbar__cart">
+            <Link href="/cart">
+              <a className={"navbar__cartLink" + isActive("/cart")}>
+                <BsCartPlus />
+                <b>{cart.length}</b>
+              </a>
+            </Link>
+          </div>
+          <button
+            className="navbar__toggler"
+            onClick={() => setClick(!click)}
+            type="button"
+          >
+            <AiOutlineMenu />
+          </button>
+          <div className="navbar__nav">
+            {Object.keys(auth).length === 0 ? (
+              <li className="nav__listItem">
+                <Link href="/signin">
+                  <a className={"nav__link" + isActive("/signin")}>
+                    <BiLogInCircle /> Sign in
+                  </a>
+                </Link>
+              </li>
+            ) : (
+              loggedRouter()
+            )}
+          </div>
+          <a href="tel:+998939427899" className="nav__phone">
+            <h4>(93) 942-78-99</h4>
+            {/* <h1>{t.description}</h1> */}
+            {/* <h5>{t("Contact__Number")}</h5> */}
+          </a>
+        </div>
+        <div className={click ? "nav__mediaMenuPlus" : "nav__mediaMenu"}>
+          <li onClick={() => setClick(false)}>
+            <a href="#">About Us</a>
+          </li>
+          <li onClick={() => setClick(false)}>
+            <a href="#">About Us</a>
+          </li>
+          <li onClick={() => setClick(false)}>
+            <a href="#">About Us</a>
+          </li>
+          <li onClick={() => setClick(false)}>
+            <a href="#">About Us</a>
+          </li>
+        </div>
+      </nav>
+      <LanguageSelect />
+    </>
   );
 }
 

@@ -10,6 +10,8 @@ import { useRouter } from "next/router";
 
 const Videos = () => {
   const { state, dispatch } = useContext(DataContext);
+  const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
+
   const { cart, auth, orders } = state;
   const router = useRouter();
 
@@ -21,7 +23,7 @@ const Videos = () => {
   // const { state, dispatch } = useContext(DataContext);
   // const { cart } = state;
 
-  console.log(buy);
+  console.log(videos);
   const isActive = (index) => {
     if (tab === index) return " active";
     return "";
@@ -29,16 +31,25 @@ const Videos = () => {
   const [data, setData] = useState([]);
 
   // const YOUTUBE__PLAYLIST = "PLt8NnwrNlZAQdsa7FINdm6UT6DrzoKw0L";
-  const YOUTUBE__PLAYLIST = "PLt8NnwrNlZARINtZ8Y_QM942cO3nYiCRm";
-  const YOUTUBE__API__KEY = "AIzaSyDQcaS38Yawh1IeRLjyDXZ-aJKSm64qyXc";
+  // const YOUTUBE__PLAYLIST = "PLt8NnwrNlZAQuYxWlsIi2Vn-GSq5KhvZm";
+  const YOUTUBE__PLAYLIST = "PLt8NnwrNlZAQozkYjXqmoU9JvB80GOo-I";
+
+  // const YOUTUBE__PLAYLIST = "PLt8NnwrNlZATttiaMqTeqyBVw_aHxRQD5";
+
+  // const YOUTUBE__API__KEY = "AIzaSyCaIYtgRmE1v0vDtL1O6dTUY4UL8IRX3lY";
 
   useEffect(() => {
     const getData = async () => {
       const res = await axios.get(
-        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${YOUTUBE__PLAYLIST}&key=${YOUTUBE__API__KEY}&maxResutls=4`
+        `https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${YOUTUBE__PLAYLIST}&key=${YOUTUBE__API__KEY}&maxResults=99`
       );
+
+      // https://www.youtube.com/playlist?list=PLt8NnwrNlZAQozkYjXqmoU9JvB80GOo-I?&key
+      // const res = await axios.get(
+      //   `https://www.youtube.com/playlist?list=PLt8NnwrNlZATttiaMqTeqyBVw_aHxRQD5?&key=${YOUTUBE__API__KEY}&maxResutls=20`
+      // );
       setData(res.data.items);
-      setVideos(res);
+      setVideos(res.data.items);
     };
     getData();
   }, []);
