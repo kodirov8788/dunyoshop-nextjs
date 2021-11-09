@@ -85,3 +85,23 @@
   position: absolute;
   /* transform: scaleY(0); */
 }
+@media screen and (max-width: 768px) {
+  .profile__headerLanguage {
+    display: none;
+    align-items: center;
+    position: fixed;
+    right: -70px;
+    top: 12px;
+    padding: 10px 15px;
+    border-radius: var(--py-borderr);
+    background-color: var(--py-yellow);
+    margin: 0px 40px;
+    user-select: none;
+    cursor: pointer;
+    min-width: 100px;
+    width: 150px;
+    white-space: nowrap;
+    height: 40px;
+    z-index: 100;
+  }
+}

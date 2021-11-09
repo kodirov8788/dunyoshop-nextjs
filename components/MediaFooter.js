@@ -190,7 +190,8 @@ const MediaFooter = () => {
             <li className="nav__listItem">
               <Link href="/signin">
                 <a className={"nav__link" + isActive("/signin")}>
-                  <BiLogInCircle /> Sign in
+                  <BiLogInCircle />
+                  {/* <p>Sign In</p> */}
                 </a>
               </Link>
             </li>
@@ -206,7 +207,7 @@ const MediaFooter = () => {
       >
         <a href="#" className="mediaFooter__contact">
           <FiSmartphone />
-          <p>Contact</p>
+          {/* <p>Contact</p> */}
         </a>
       </li>
     </div>

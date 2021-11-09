@@ -1,6 +1,8 @@
 module.exports = {
   env: {
     BASE_URL: "https://www.dunyoshop.uz/",
+    // BASE_URL: "http://localhost:3000/",
+
     MONGODB_URL:
       "mongodb+srv://dunyoshop:84hfjGeD4ScN1G1W@cluster0.nscxl.mongodb.net/collection?retryWrites=true&w=majority",
     ACCESS_TOKEN_SECRET: "JG]d3~J7@.cmNdSkh=b~2$=ZwqbU8r4dsF+[K$T5uVaMPDn*<q",
