@@ -41,6 +41,7 @@ const updateProduct = async (req, res) => {
 
     const { id } = req.query;
     const {
+      sale,
       video,
       title,
       price,
@@ -73,6 +74,7 @@ const updateProduct = async (req, res) => {
         category,
         images,
         video,
+        sale,
       }
     );
 

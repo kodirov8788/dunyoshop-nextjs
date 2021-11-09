@@ -14,10 +14,11 @@ const ProductsManager = () => {
     description: "",
     content: "",
     category: "",
+    sale: "",
     video: "",
   };
   const [product, setProduct] = useState(initialState);
-  const { video, title, price, inStock, description, content, category } =
+  const { sale, video, title, price, inStock, description, content, category } =
     product;
 
   // --------------- video upload--------------------
@@ -270,6 +271,17 @@ const ProductsManager = () => {
                 <span onClick={() => deleteImage(index)}>X</span>
               </div>
             ))}
+          </div>
+          <div className="col-sm-6">
+            <label htmlFor="sale">Sale</label>
+            <input
+              type="number"
+              name="sale"
+              value={sale}
+              placeholder="sale product"
+              className="d-block w-100 p-2"
+              onChange={handleChangeInput}
+            />
           </div>
           {videoInput ? (
             <div className="col-sm-6">

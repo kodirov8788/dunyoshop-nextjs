@@ -83,6 +83,7 @@ const createProduct = async (req, res) => {
 
     const {
       video,
+      sale,
       title,
       price,
       inStock,
@@ -112,6 +113,7 @@ const createProduct = async (req, res) => {
       category,
       images,
       video,
+      sale,
     });
 
     await newProduct.save();

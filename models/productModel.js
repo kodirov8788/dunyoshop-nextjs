@@ -7,6 +7,11 @@ const productSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+    sale: {
+      type: Number,
+      // required: true,
+      // trim: true
+    },
     video: {
       type: String,
       // required: true,
