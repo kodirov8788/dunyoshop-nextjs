@@ -17,9 +17,9 @@ const Profile = () => {
     password: "",
     cf_password: "",
   };
-  const scrollTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
+  // const scrollTop = () => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
+  // };
   const YOUTUBE__API__KEY = process.env.YOUTUBE__API__KEY;
   const [tab, setTab] = useState(0);
   const [tab2, setTab2] = useState(0);
@@ -31,16 +31,7 @@ const Profile = () => {
   const [item6, setItem6] = useState(false);
   const [video, setVideo] = useState([]);
   const box = item3.filter((pro) => pro.length !== 0);
-  // console.log("this is item2", item2);
-  // console.log("this is item3", item3);
-  // ? as.cart.map((item5) =>
-  //   item5.title && item5.video
-  //   ? item5.video + setItem4(item5.video)
-  //   : ""
-  // )
-  // : ""
-  // console.log("this is item4", item4);
-  // console.log("this is item6", item6);
+
   console.log("this is video", video?.items);
   // console.log("this is video details", video?.items.snippet);
 
@@ -325,13 +316,14 @@ const Profile = () => {
           <div className="profile__videoSection">
             <div className="profile__mainVideo">
               <ReactPlayer
-                style={{ width: "100%" }}
+                borderRadius="4px"
                 width="100%"
                 height="500px"
-                playing
-                // playIcon={<button>Play</button>}
+                playing={true}
+                muted={true}
+                loop={true}
+                controls={true}
                 url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
-                // onClick={() => setTab(index)}
               />
             </div>
             <div className="profile__leftSide">

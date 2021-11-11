@@ -7,6 +7,11 @@ const reducers = (state, action) => {
         ...state,
         notify: action.payload,
       };
+    case ACTIONS.ISCLICK:
+      return {
+        ...state,
+        isClick: action.payload,
+      };
     case ACTIONS.AUTH:
       return {
         ...state,

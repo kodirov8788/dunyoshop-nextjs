@@ -124,7 +124,7 @@ const Cart = () => {
       <div className="col-md-8 text-secondary table-responsive my-3">
         <h2 className="text-uppercase">Shopping Cart</h2>
 
-        <table className="table my-3">
+        <table className="table my-3 ">
           <tbody>
             {cart.map((item) => (
               <CartItem

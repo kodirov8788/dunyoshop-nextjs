@@ -2,17 +2,10 @@
 import Link from "next/link";
 import { patchData } from "../utils/fetchData";
 import { updateItem } from "../store/Actions";
-import { useState, useEffect } from "react";
 
 const OrderDetail = ({ orderDetail, state, dispatch }) => {
   const { auth, orders } = state;
 
-  const [orderData, setOrderData] = useState("");
-  // const [orderDetails, setOrderDetails] = useState(orderDetails);
-  // console.log(orderDetail);
-  // useEffect(() => {
-  //   setOrderDetails(orderDetails);
-  // }, []);
   console.log("this is orderData", orderDetail);
 
   const handleDelivered = (order) => {
@@ -50,7 +43,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
       {orderDetail.map((order) => (
         <div
           key={order._id}
-          style={{ margin: "10px auto" }}
+          style={{ margin: "30px 10px 100px 10px" }}
           className="row justify-content-around"
         >
           <div className="text-uppercase my-3" style={{ maxWidth: "600px" }}>
@@ -143,69 +136,68 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
           {!order.paid && auth.user.role !== "admin" && (
             <div className="order__payment">
-              <div className="payment w-70">
-                <h2 className=" mb-5"> Pay by this services </h2>
+              <h2 className=" mb-3 "> Pay by this services </h2>
 
-                <div className="payment__imgs">
-                  <img
-                    src="https://docs.click.uz/wp-content/themes/click_help/assets/images/logo.png"
-                    alt=""
-                  />
-                  <img
-                    src="https://cdn.paycom.uz/documentation_assets/payme_01.png"
-                    alt=""
-                  />
-                  <img
-                    src="/assets/uzcard.svg"
-                    alt=""
-                    style={{ marginTop: "10px" }}
-                  />
-                  <img
-                    src="https://www.fibernet.uz/wp-content/uploads/apelsin-logo.png"
-                    alt=""
-                  />
-                </div>
-
-                <div className="order__telegram">
-                  <h2> contact us</h2>
-                  <div className="order__contactDetail">
-                    <span>
-                      <img
-                        style={{ width: "60px", marginRight: "10px" }}
-                        src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png"
-                        alt=""
-                      />
-                      <h3>telegram:</h3>
-                    </span>
-                    <h4>
-                      <Link href="#">@kodirovdev</Link>
-                    </h4>
-                  </div>
-                  <div className="order__contactDetail">
-                    <span>
-                      <img
-                        src="http://svgcuts.com/fsvgfotw/2014/svgcuts-022314-retro-telephone.png"
-                        alt=""
-                      />
-                      <h3>Tel:</h3>
-                    </span>
-                    <h4>
-                      <Link href="+998939427899">(93)9427899</Link>
-                    </h4>
-                  </div>
-                </div>
-                <h2
-                  style={{
-                    padding: "10px",
-                    color: "red",
-                    marginTop: "40px",
-                    width: "400px",
-                    // border: "1px solid #000",
-                  }}
-                >
-                  Total: ${order.total}
-                </h2>
+              <div className="payment__imgs">
+                <img
+                  src="https://docs.click.uz/wp-content/themes/click_help/assets/images/logo.png"
+                  alt=""
+                />
+                <img
+                  src="https://cdn.paycom.uz/documentation_assets/payme_01.png"
+                  alt=""
+                />
+                <img
+                  src="/assets/uzcard.svg"
+                  alt=""
+                  style={{ marginTop: "10px" }}
+                />
+                <img
+                  src="https://www.fibernet.uz/wp-content/uploads/apelsin-logo.png"
+                  alt=""
+                />
               </div>
+              <h2>contact us</h2>
+
+              <div className="order__telegram">
+                <div className="order__contactDetail">
+                  <span>
+                    <img
+                      style={{ width: "60px", marginRight: "10px" }}
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/82/Telegram_logo.svg/1024px-Telegram_logo.svg.png"
+                      alt=""
+                    />
+                    <h3>telegram:</h3>
+                  </span>
+                  <h4>
+                    <Link href="#">@kodirovdev</Link>
+                  </h4>
+                </div>
+                <div className="order__contactDetail">
+                  <span>
+                    <img
+                      src="http://svgcuts.com/fsvgfotw/2014/svgcuts-022314-retro-telephone.png"
+                      alt=""
+                    />
+                    <h3>Tel:</h3>
+                  </span>
+                  <h4>
+                    <Link href="+998939427899">(93)9427899</Link>
+                  </h4>
+                </div>
+              </div>
+              <h2
+                style={{
+                  padding: "10px",
+                  color: "red",
+                  marginTop: "40px",
+                  // marginLeft: "20px",
+                  width: "400px",
+                  // border: "1px solid #000",
+                }}
+              >
+                Total: ${order.total}
+              </h2>
             </div>
           )}
         </div>

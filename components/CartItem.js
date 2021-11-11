@@ -5,7 +5,7 @@ import { decrease, increase } from "../store/Actions";
 const CartItem = ({ item, dispatch, cart }) => {
   return (
     <tr>
-      <td style={{ width: "100px", overflow: "hidden" }}>
+      <td style={{ width: "100px", overflow: "hidden", border: "none" }}>
         <img
           src={item.images[0].url}
           alt={item.images[0].url}
@@ -14,7 +14,10 @@ const CartItem = ({ item, dispatch, cart }) => {
         />
       </td>
 
-      <td style={{ minWidth: "200px" }} className="w-50 align-middle">
+      <td
+        style={{ minWidth: "100px", border: "none" }}
+        className="w-50 align-middle mt-20"
+      >
         <h5 className="text-capitalize text-secondary">
           <Link href={`/product/${item._id}`}>
             <a>{item.title}</a>
@@ -29,7 +32,12 @@ const CartItem = ({ item, dispatch, cart }) => {
         )}
       </td>
 
-      <td className="align-middle" style={{ minWidth: "150px" }}>
+      <td
+        className="cartItem__btns"
+        style={{
+          border: "none",
+        }}
+      >
         <button
           className="btn btn-outline-secondary"
           onClick={() => dispatch(decrease(cart, item._id))}
@@ -51,10 +59,7 @@ const CartItem = ({ item, dispatch, cart }) => {
         </button>
       </td>
 
-      <td
-        className="align-middle"
-        style={{ minWidth: "50px", cursor: "pointer" }}
-      >
+      <td style={{ minWidth: "50px", cursor: "pointer", border: "none" }}>
         <i
           className="far fa-trash-alt text-danger"
           aria-hidden="true"

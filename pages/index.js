@@ -15,7 +15,6 @@ import Footer from "../components/Footer";
 import Youtube from "./Youtube";
 import Link from "next/link";
 import Videos from "./videos";
-// import I18n from "./I18n";
 import en from "../locales/en";
 import uz from "../locales/uz";
 const Home = (props) => {
@@ -24,19 +23,11 @@ const Home = (props) => {
   const [page, setPage] = useState(1);
   const router = useRouter();
   const { state, dispatch } = useContext(DataContext);
-  const { auth } = state;
-  const { categories } = state;
-
-  const { locale } = router;
-  const t = locale === "en" ? en : uz;
-  console.log("home page", locale);
-  // console.log(categories);
-  // console.log();
-
-  // console.log(products);
+  const { auth, isClick } = state;
 
   const shirinliklar = [];
   const technology = [];
+  console.log("isClick", isClick);
 
   products.map((item) =>
     item.category === "617afcdcaa8e7240bae36a42" ? shirinliklar.push(item) : ""
@@ -44,7 +35,8 @@ const Home = (props) => {
   products.map((item) =>
     item.category === "617afce5aa8e7240bae36a43" ? technology.push(item) : ""
   );
-
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   // -------------------------------------------------
   const settings = {
     dots: true,
@@ -134,7 +126,17 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      <Banner />
+      {/* <Banner /> */}
+      <button
+        onClick={() =>
+          dispatch({
+            type: "ISCLICK",
+            payload: !isClick,
+          })
+        }
+      >
+        IsClick
+      </button>
 
       {/* <Link href="/videos">
         <a> Videos</a>

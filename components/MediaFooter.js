@@ -12,6 +12,15 @@ import Cookie from "js-cookie";
 const MediaFooter = () => {
   const { state, dispatch } = useContext(DataContext);
   const { categories, auth } = state;
+  const [logged, setLogged] = useState(false);
+  useEffect(() => {
+    const x = Object.keys(auth).length !== 0;
+    return setLogged(x);
+  }, [auth]);
+
+  // console.log(Object.keys(auth).length !== 0);
+  console.log(logged);
+
   const router = useRouter();
   const [status, setStatus] = useState(false);
   const [search, setSearch] = useState("");
@@ -19,8 +28,7 @@ const MediaFooter = () => {
   const [userClick, setUserClick] = useState(false);
   const [categoryId, setCategoryId] = useState("Category");
   const email = auth.user?.email.match(/^.+(?=@)/)[0];
-  const emailCut =
-    email?.length < 10 ? email : email?.substr(0, 11 - 1) + "...";
+  const emailCut = email?.length < 8 ? email : email?.substr(0, 11 - 1) + "...";
   // console.log("this is category", categoryId);
   // console.log("this is userClick", userClick);
   const click = () => {
@@ -41,7 +49,7 @@ const MediaFooter = () => {
   // -----------------
   const isActive = (r) => {
     if (r === router.pathname) {
-      return " active";
+      return "active";
     } else {
       return "";
     }
@@ -81,7 +89,7 @@ const MediaFooter = () => {
               borderRadius: "50%",
               width: "30px",
               height: "30px",
-              // transform: "translateY(-3px)",
+              transform: "translateY(-3px)",
               marginRight: "3px",
             }}
           />
@@ -93,13 +101,15 @@ const MediaFooter = () => {
   return (
     <div className="mediafooter">
       <li
-        className="mediaTask__adderSelect"
         onClick={() =>
           setStatus(!status) + setSearchClick(false) + setUserClick(false)
         }
       >
-        <BiCategory />
-        {/* <p> {categoryId} </p> */}
+        <div className="mediaFooter__listItems">
+          <BiCategory />
+          <p>Contact</p>
+        </div>
+
         <div
           className={status ? "mediaTask__adderStatus" : "mediaHide__status"}
         >
@@ -149,12 +159,15 @@ const MediaFooter = () => {
         </button>
       </div>
       <li
-        className="media__footerSearch"
+        // className="media__footerSearch"
         onClick={() =>
           setSearchClick(!searchClick) + setStatus(false) + setUserClick(false)
         }
       >
-        <FiSearch />
+        <a href="#" className="mediaFooter__listItems">
+          <FiSearch />
+          <p>Search</p>
+        </a>
       </li>
       <div
         className={`${
@@ -162,7 +175,7 @@ const MediaFooter = () => {
             ? `${
                 auth.user?.role === "admin"
                   ? "MediaFooter__customListAdmin"
-                  : "MediaFooter__customList"
+                  : `${logged ? "MediaFooter__customList" : ""}`
               }`
             : `${
                 auth.user?.role === "admin"
@@ -171,43 +184,48 @@ const MediaFooter = () => {
               }`
         }`}
       >
-        <Link href="/profile">
-          <a className="mediaFooter__userlistItem">Profile</a>
-        </Link>
-        {auth.user?.role === "admin" && adminRouter()}
-        <span className="mediaFooter__userlistItem" onClick={handleLogout}>
-          Logout
-        </span>
+        {logged && (
+          <>
+            <Link href="/profile">
+              <a className="mediaFooter__userlistItem">Profile</a>
+            </Link>
+            {auth.user?.role === "admin" && adminRouter()}
+
+            <span className="mediaFooter__userlistItem" onClick={handleLogout}>
+              Logout
+            </span>
+          </>
+        )}
       </div>
       <li
-        className="media__footerUser"
+        // className="media__footerUser"
         onClick={() =>
           setUserClick(!userClick) + setSearchClick(false) + setStatus(false)
         }
       >
-        <div className="navbar__nav">
-          {Object.keys(auth).length === 0 ? (
-            <li className="nav__listItem">
-              <Link href="/signin">
-                <a className={"nav__link" + isActive("/signin")}>
-                  <BiLogInCircle />
-                  {/* <p>Sign In</p> */}
-                </a>
-              </Link>
-            </li>
-          ) : (
-            loggedRouter()
-          )}
-        </div>
+        {/* <div className="mediaFoote__nav"> */}
+        {Object.keys(auth).length === 0 ? (
+          <div className="mediaFooter__listItems">
+            <Link href="/signin">
+              <a className={"mediaFooter__logged" + isActive("/signin")}>
+                <BiLogInCircle style={{ marginLeft: "5px" }} />
+                <p>Sign In</p>
+              </a>
+            </Link>
+          </div>
+        ) : (
+          loggedRouter()
+        )}
+        {/* </div> */}
       </li>
       <li
         onClick={() =>
           setUserClick(false) + setSearchClick(false) + setStatus(false)
         }
       >
-        <a href="#" className="mediaFooter__contact">
+        <a href="#" className="mediaFooter__listItems">
           <FiSmartphone />
-          {/* <p>Contact</p> */}
+          <p>Contact</p>
         </a>
       </li>
     </div>

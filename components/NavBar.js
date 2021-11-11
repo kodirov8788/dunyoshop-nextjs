@@ -14,18 +14,15 @@ import { BiLogInCircle } from "react-icons/bi";
 import Category from "./Category";
 import Search from "./Search";
 import Filter from "./Filter";
-// import LanguageSelect from "./LanguageSelect";
 import en from "../locales/en";
 import uz from "../locales/uz";
 import LanguageSelect from "../pages/LanguageSelect";
 function NavBar() {
-  // const { t } = useTranslation();
   const router = useRouter();
 
   const { state, dispatch } = useContext(DataContext);
   const { auth, cart } = state;
   const [show, setShow] = useState(false);
-  const [click, setClick] = useState(false);
   const [userOpen, setUserOpen] = useState(false);
   const email = auth.user?.email.match(/^.+(?=@)/)[0];
   const emailCut =
@@ -148,13 +145,7 @@ function NavBar() {
               </a>
             </Link>
           </div>
-          <button
-            className="navbar__toggler"
-            onClick={() => setClick(!click)}
-            type="button"
-          >
-            <AiOutlineMenu />
-          </button>
+
           <div className="navbar__nav">
             {Object.keys(auth).length === 0 ? (
               <li className="nav__listItem">
@@ -173,20 +164,6 @@ function NavBar() {
             {/* <h1>{t.description}</h1> */}
             {/* <h5>{t("Contact__Number")}</h5> */}
           </a>
-        </div>
-        <div className={click ? "nav__mediaMenuPlus" : "nav__mediaMenu"}>
-          <li onClick={() => setClick(false)}>
-            <a href="#">About Us</a>
-          </li>
-          <li onClick={() => setClick(false)}>
-            <a href="#">About Us</a>
-          </li>
-          <li onClick={() => setClick(false)}>
-            <a href="#">About Us</a>
-          </li>
-          <li onClick={() => setClick(false)}>
-            <a href="#">About Us</a>
-          </li>
         </div>
       </nav>
       <LanguageSelect />

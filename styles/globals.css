@@ -87,6 +87,7 @@ img {
 
 /* ----------- Footer ------------- */
 @import url("./Footer.css");
+@import url("./CartItem.css");
 
 /* ----------- MediaFooter ------------- */
 @import url("./Media/MediaSubFooter.css");

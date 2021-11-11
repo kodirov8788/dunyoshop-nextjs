@@ -6,13 +6,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { DataContext } from "../../store/GlobalState";
 import Cookie from "js-cookie";
-import { BsCartPlus, BsThreeDots } from "react-icons/bs";
-import { FiSearch } from "react-icons/fi";
+import { BsCartPlus } from "react-icons/bs";
 import { AiOutlineMenu } from "react-icons/ai";
 
 import { BiLogInCircle } from "react-icons/bi";
-import Category from "./../Category";
-import Search from "./../Search";
 // import Filter from "./Filter";
 // import LanguageSelect from "./LanguageSelect";
 function MediaNavBar() {

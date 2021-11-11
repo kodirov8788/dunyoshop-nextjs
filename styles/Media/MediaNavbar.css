@@ -6,6 +6,7 @@
   top: 0;
   z-index: 100;
   background-color: #fff;
+  border-bottom: 0.5px solid rgba(0, 0, 0, 0.2);
   display: none;
 }
 .mediaNavbar__brandContainer {
@@ -195,8 +196,19 @@ a {
   }
 
   .mediaNavbar__toggler {
-    display: block;
+    display: flex;
+    width: 30px;
+    font-size: 30px;
+    height: 30px;
+    border: 2px solid var(--main-color);
     z-index: 1;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    outline: none;
+  }
+  .mediaNavbar__toggler svg {
+    font-size: 30px;
   }
   .mediaNavbar__cart {
     margin-left: 80px;

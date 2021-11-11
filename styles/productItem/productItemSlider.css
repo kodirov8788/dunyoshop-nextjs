@@ -5,14 +5,16 @@
   background-color: #fff;
   padding: 15px;
   box-shadow: 0 0 15px #ddd;
-  margin: 1em 10px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1.3em;
+  margin-right: 1em;
   border-radius: 10px;
   position: relative;
   transition: all 0.2s ease-in;
   border: 2px solid #ccc;
 }
 .sliderProduct__card:hover {
-  /* transform: translateY(-5px); */
   transform: scale(1.01) translateY(-3px);
   box-shadow: 0 15px 30px #ddd;
   border: 2px solid var(--main-color);
@@ -25,9 +27,7 @@
   border-top-right-radius: 4px;
   cursor: pointer;
 }
-/* .product_card img:hover {
-  transform: scale(1.02);
-} */
+/* 
 .sliderProduct__box h5 {
   width: 100%;
   text-overflow: ellipsis;
@@ -42,8 +42,7 @@
 .sliderProduct__box h5:hover {
   color: var(--main-color);
   transform: translateX(10px);
-  /* margin-left: 10px; */
-}
+}*/
 .sliderProduct__box p {
   width: 100%;
   display: -webkit-box;
@@ -53,12 +52,12 @@
   overflow: hidden;
   color: #323232;
 }
-.row__btn {
+/* .row__btn {
   width: 100%;
   margin-top: 10px;
   display: flex;
   justify-content: space-between;
-}
+} */
 .sliderProduct__price {
   display: flex;
   justify-content: space-between;
@@ -77,9 +76,8 @@
   color: #8fd021;
   font-weight: 700;
 }
-/* -----------------------Btn----------------------- */
 
-.btn__view {
+.productItemSlider__btnView {
   display: flex;
   justify-content: center;
   width: 120px;
@@ -97,27 +95,24 @@
   padding-top: 2px;
   padding-left: 5px;
 }
-.btn__view p {
+.productItemSlider__btnView p {
   margin-top: 6px;
 }
-.btn__view > svg {
+.productItemSlider__btnView > svg {
   margin-right: 16px;
-  font-size: 40px;
-  margin-top: 2px;
+  font-size: 50px;
+  margin-top: -3px;
   margin-left: 10px;
   color: #ffffff;
 }
-.btn__view:hover {
+.productItemSlider__btnView:hover {
   background-color: #fb8332;
   color: #fff;
   box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
   transform: translateY(-1px);
 }
-/* #btn_view {
-  background: teal;
-  margin-left: 5px;
-} */
-.btn__view:active {
+
+.productItemSlider__btnView:active {
   background-color: #c85000;
   box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
   transform: translateY(0);
@@ -128,18 +123,8 @@
   width: 25px;
   height: 25px;
 }
-@media (max-width: 720px) {
-  .product_card {
-    max-width: 300px;
-    /* overflow: hidden; */
-    height: 400px;
-    padding: 15px;
-    box-shadow: 0 0 15px #ddd;
-    /* margin: 10px; */
-    position: relative;
-  }
-}
 
+/* 
 .btn__buy {
   background: rgb(80, 165, 79);
   border-radius: 50%;
@@ -175,8 +160,7 @@
 .btn__buy:hover {
   background: rgb(37, 122, 36);
 
-  /* transform: scale(1.1); */
-  /* animation: pulse-yellow-hover 5s infinite; */
+
 }
 @keyframes pulse-yellow-hover {
   0% {
@@ -193,7 +177,7 @@
     transform: scale(0.95);
     box-shadow: 0 0 0 0 rgba(255, 177, 66, 0);
   }
-}
+} */
 
 .sliderProduct__sale {
   position: absolute;
@@ -207,7 +191,6 @@
   text-align: center;
   vertical-align: middle;
   line-height: 2.5rem;
-  /* margin: 45vh 45vw; */
   transform: rotate(-20deg);
   animation: beat 1s ease infinite alternate;
 }

@@ -56,17 +56,20 @@
 /* -------------------- video section---------- */
 .profile__videoSection {
   width: 100%;
-  border: 2px solid red;
+  /* border: 2px solid red; */
   display: flex;
 }
 .profile__mainVideo {
   width: 80%;
   height: auto;
-  border: 2px solid red;
+  border-radius: 4px;
+  /* border: 2px solid red; */
 }
 .profile__leftSide {
   width: 20%;
-  border: 2px solid red;
+  margin-left: 20px;
+  border: 2px solid #ccc;
+  border-radius: 4px;
   height: auto;
 }
 .profile__leftSide button {
@@ -92,7 +95,7 @@
   width: 100%;
   height: auto;
   padding: 20px;
-  border: 2px solid red;
+  /* border: 2px solid red; */
 }
 .profile__videoDivider button {
   width: 30%;

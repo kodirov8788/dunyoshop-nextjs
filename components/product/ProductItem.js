@@ -1,12 +1,19 @@
 /* eslint-disable @next/next/link-passhref */
 /* eslint-disable @next/next/no-img-element */
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { DataContext } from "../../store/GlobalState";
 import { addToCart } from "../../store/Actions";
 import { GrView } from "react-icons/gr";
 import { BsFillCartPlusFill } from "react-icons/bs";
 const ProductItem = ({ product, handleCheck }) => {
+  const [salebox, setSalebox] = useState(false);
+
+  useEffect(() => {
+    if (product.sale) {
+      setSalebox(true);
+    }
+  }, []);
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth } = state;
 
@@ -64,7 +71,7 @@ const ProductItem = ({ product, handleCheck }) => {
   };
 
   return (
-    <div className="product__card">
+    <div className="productItem__card">
       {auth.user && auth.user.role === "admin" && (
         <input
           type="checkbox"
@@ -90,16 +97,27 @@ const ProductItem = ({ product, handleCheck }) => {
         </Link>
 
         <div className="row justify-content-between mx-0">
-          <span>${product.price}</span>
-          {product.inStock > 0 ? (
-            <h6 className="text-danger">In Stock: {product.inStock}</h6>
-          ) : (
-            <h6 className="text-danger">Out Stock</h6>
+          {salebox && (
+            <span className="productItem__actualPrice"> $ {product.price}</span>
           )}
-          <span className="product__sale">-20%</span>
-        </div>
+          {/* {salebox && product.price} */}
+          <span className={salebox && " productItem__SalePrice"}>
+            $
+            {salebox && product.sale
+              ? product.price - (product.price / 100) * product.sale
+              : product.price}
+          </span>
 
-        <p className="card-text" title={product.description}>
+          {product.sale && (
+            <span className="product__sale text-white">-{product.sale}%</span>
+          )}
+        </div>
+        {/* {product.inStock > 0 ? (
+          <h6 className="text-danger">In Stock: {product.inStock}</h6>
+        ) : (
+          <h6 className="text-danger">Out Stock</h6>
+        )} */}
+        <p className="card__text" title={product.description}>
           {product.description}
         </p>
 

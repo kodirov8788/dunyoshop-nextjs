@@ -1,4 +1,4 @@
-import { createContext, useReducer, useEffect } from "react";
+import { createContext, useReducer, useState, useEffect } from "react";
 import reducers from "./Reducers";
 import { getData } from "../utils/fetchData";
 
@@ -13,10 +13,12 @@ export const DataProvider = ({ children }) => {
     orders: [],
     users: [],
     categories: [],
+    isClick: true,
   };
 
   const [state, dispatch] = useReducer(reducers, initialState);
   const { cart, auth } = state;
+  // const [setIsClick] = useState(initialState.isClick);
 
   useEffect(() => {
     const firstLogin = localStorage.getItem("firstLogin");

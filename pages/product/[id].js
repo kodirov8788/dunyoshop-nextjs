@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
 import { useState, useContext, useEffect } from "react";
@@ -26,16 +27,7 @@ const DetailProduct = (props) => {
   };
   // ------------------video section----------------
   const [data, setData] = useState([]);
-  const [youtubeLink, setYoutubeLink] = useState("");
-  // const youtube__api =
-  //   "https://youtube.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=PLt8NnwrNlZARINtZ8Y_QM942cO3nYiCRm&key";
-  // const YOUTUBE__API__KEY = "AIzaSyDQcaS38Yawh1IeRLjyDXZ-aJKSm64qyXc";
-  // useEffect(() => {
-  //   setYoutubeLink(
 
-  //   );
-  // }, []);
-  // PLt8NnwrNlZAQdsa7FINdm6UT6DrzoKw0L
   console.log("first", YOUTUBE__API__KEY);
   console.log("this is product video", product.video);
 
@@ -67,14 +59,18 @@ const DetailProduct = (props) => {
           // onClick={() => setTab(index)}
         />
       ) : (
-        <div className="col-md-6">
+        <div className="col-md-5 ml-2">
           <img
             src={product.images[tab].url}
             alt={product.images[tab].url}
-            className="d-block img-thumbnail rounded mt-4 w-100"
-            style={{ height: "350px" }}
+            className="d-block img-thumbnail  rounded mt-4 w-100"
+            style={{
+              height: "350px",
+              objectFit: "cover",
+              objectPosition: "center",
+            }}
           />
-          <div className="row mx-0" style={{ cursor: "pointer" }}>
+          <div className="row ml-1" style={{ cursor: "pointer" }}>
             {product.images.map((img, index) => (
               <img
                 key={index}
@@ -89,7 +85,7 @@ const DetailProduct = (props) => {
         </div>
       )}
 
-      <div className="col-md-6 mt-3">
+      <div className="col-md-6 m-3 ">
         <h2 className="text-uppercase">{product.title}</h2>
         <h5 className="text-danger">${product.price}</h5>
 
@@ -108,7 +104,7 @@ const DetailProduct = (props) => {
 
         <button
           type="button"
-          className="btn btn-dark d-block my-3 px-5"
+          className="productDetail__buyBtn"
           onClick={() => dispatch(addToCart(product, cart))}
         >
           {t.productBtn}
