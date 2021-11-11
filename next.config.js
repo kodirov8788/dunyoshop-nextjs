@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BASE_URL: "https://dunyoshop-nextjs.herokuapp.com/en",
+    BASE_URL: "https://dunyoshop-nextjs.herokuapp.com",
     // BASE_URL: "http://localhost:3000/",
 
     MONGODB_URL:
