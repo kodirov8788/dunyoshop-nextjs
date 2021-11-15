@@ -23,7 +23,9 @@
     "react-slick": "^0.28.1",
     "react-slideshow-image": "^3.6.0",
     "slick-carousel": "^1.8.1",
-    "swiper": "^7.2.0"
+    "swiper": "^7.2.0",
+    "video-player": "^0.0.1",
+    "video-react": "^0.14.1"
   },
   "devDependencies": {
     "eslint": "7",

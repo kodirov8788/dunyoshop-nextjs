@@ -5,7 +5,8 @@ import { DataContext } from "../store/GlobalState";
 import { postData } from "../utils/fetchData";
 import Cookie from "js-cookie";
 import { useRouter } from "next/router";
-
+import en from "../locales/en";
+import uz from "../locales/uz";
 const Signin = () => {
   const initialState = { email: "", password: "" };
   const [userData, setUserData] = useState(initialState);
@@ -15,6 +16,8 @@ const Signin = () => {
   const { auth } = state;
 
   const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -54,7 +57,7 @@ const Signin = () => {
   return (
     <div>
       <Head>
-        <title>Sign in Page</title>
+        <title>{t.Sign__in__Page}</title>
       </Head>
 
       <form
@@ -63,7 +66,7 @@ const Signin = () => {
         onSubmit={handleSubmit}
       >
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="exampleInputEmail1">{t.Email__address}</label>
           <input
             type="email"
             className="form-control"
@@ -74,7 +77,7 @@ const Signin = () => {
             onChange={handleChangeInput}
           />
           <small id="emailHelp" className="form-text text-muted">
-            We&#39;ll never share your email with anyone else.
+            {t.email__security}
           </small>
         </div>
         {/* <div className="form-group">
@@ -89,7 +92,7 @@ const Signin = () => {
           />
         </div> */}
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">{t.Password}</label>
           <input
             type="password"
             className="form-control"
@@ -101,13 +104,13 @@ const Signin = () => {
         </div>
 
         <button type="submit" className="btn btn-dark w-100">
-          Login
+          {t.Sign__in__Page}
         </button>
 
         <p className="my-2">
-          You don&#39;t have an account?{" "}
+          {t.not__have__account}{" "}
           <Link href="/register">
-            <a style={{ color: "crimson" }}>Register Now</a>
+            <a style={{ color: "crimson" }}>{t.Register__Now}</a>
           </Link>
         </p>
       </form>

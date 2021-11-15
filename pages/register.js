@@ -5,22 +5,24 @@ import valid from "../utils/valid";
 import { DataContext } from "../store/GlobalState";
 import { postData } from "../utils/fetchData";
 import { useRouter } from "next/router";
-
+import en from "../locales/en";
+import uz from "../locales/uz";
 const Register = () => {
+  const router = useRouter();
+
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   const initialState = {
-    boxes: "",
     name: "",
     email: "",
     password: "",
     cf_password: "",
   };
   const [userData, setUserData] = useState(initialState);
-  const { boxes, name, email, password, cf_password } = userData;
+  const { name, email, password, cf_password } = userData;
 
   const { state, dispatch } = useContext(DataContext);
   const { auth } = state;
-
-  const router = useRouter();
 
   const handleChangeInput = (e) => {
     const { name, value } = e.target;
@@ -50,7 +52,7 @@ const Register = () => {
   return (
     <div>
       <Head>
-        <title>Register Page</title>
+        <title>{t.Register__Page}</title>
       </Head>
 
       <form
@@ -59,18 +61,7 @@ const Register = () => {
         onSubmit={handleSubmit}
       >
         <div className="form-group">
-          <label htmlFor="name">boxes</label>
-          <input
-            type="text"
-            className="form-control"
-            id="boxes"
-            name="boxes"
-            value={boxes}
-            onChange={handleChangeInput}
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="name">Name</label>
+          <label htmlFor="name">{t.Name}</label>
           <input
             type="text"
             className="form-control"
@@ -82,7 +73,7 @@ const Register = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="exampleInputEmail1">Email address</label>
+          <label htmlFor="exampleInputEmail1">{t.Email__address}</label>
           <input
             type="email"
             className="form-control"
@@ -93,12 +84,12 @@ const Register = () => {
             onChange={handleChangeInput}
           />
           <small id="emailHelp" className="form-text text-muted">
-            We&#39;ll never share your email with anyone else.
+            {t.email__security}
           </small>
         </div>
 
         <div className="form-group">
-          <label htmlFor="exampleInputPassword1">Password</label>
+          <label htmlFor="exampleInputPassword1">{t.Password}</label>
           <input
             type="password"
             className="form-control"
@@ -110,7 +101,7 @@ const Register = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="exampleInputPassword2">Confirm Password</label>
+          <label htmlFor="exampleInputPassword2">{t.Confirm__Password}</label>
           <input
             type="password"
             className="form-control"
@@ -122,13 +113,13 @@ const Register = () => {
         </div>
 
         <button type="submit" className="btn btn-dark w-100">
-          Register
+          {t.Register}
         </button>
 
         <p className="my-2">
-          Already have an account?{" "}
+          {t.Already__have}{" "}
           <Link href="/signin">
-            <a style={{ color: "crimson" }}>Login Now</a>
+            <a style={{ color: "crimson" }}>{t.Login__Now}</a>
           </Link>
         </p>
       </form>

@@ -5,11 +5,14 @@
   background-color: #fff;
   padding: 15px;
   box-shadow: 0 0 15px #ddd;
-  margin: 1em 10px;
+  margin-top: 1em;
+  margin-bottom: 1em;
+  margin-left: 1.3em;
+  margin-right: 1em;
   border-radius: 10px;
   position: relative;
   transition: all 0.2s ease-in;
-  /* border: 2px solid #ccc; */
+  border: 2px solid #ccc;
 }
 .productItem__card:hover {
   /* transform: translateY(-5px); */

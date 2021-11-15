@@ -151,7 +151,7 @@ function NavBar() {
               <li className="nav__listItem">
                 <Link href="/signin">
                   <a className={"nav__link" + isActive("/signin")}>
-                    <BiLogInCircle /> Sign in
+                    <BiLogInCircle /> {t.Sign__in}
                   </a>
                 </Link>
               </li>

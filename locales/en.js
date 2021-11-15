@@ -1,7 +1,21 @@
 /* eslint-disable import/no-anonymous-default-export */
 export default {
   description: `hello`,
-  product: `Productssss`,
+  product: `Sweets`,
   title: `Detail product`,
   productBtn: `Buy this product`,
+  Register__Page: "Register Page",
+  Email__address: "Email address",
+  Name: "Name",
+  email__security: "We'll never share your email with anyone else.",
+  Password: "Password",
+  Confirm__Password: "Confirm password",
+  Register: "Register",
+  Already__have: "Already__have an account?",
+  Login__Now: "Login Now",
+  Sign__in__Page: "Sign in Page",
+  not__have__account: "You don&#39;t have an account?",
+  Register__Now: "Register Now",
+  Sign__in: "Sign in",
+  Categories: "Categories",
 };

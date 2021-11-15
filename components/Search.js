@@ -10,9 +10,10 @@ const Search = () => {
   //   const { state, dispatch } = useContext(DataContext);
 
   useEffect(() => {
-    filterSearch({ router, search: search ? search.toLowerCase() : "all" });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [search]);
+    if (search) {
+      filterSearch({ router, search: search ? search.toLowerCase() : "all" });
+    }
+  }, [router, search]);
 
   const hundleBtn = (e) => {
     e.preventDefault();

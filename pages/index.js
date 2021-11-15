@@ -126,8 +126,8 @@ const Home = (props) => {
       <Head>
         <title>Home Page</title>
       </Head>
-      {/* <Banner /> */}
-      <button
+      <Banner />
+      {/* <button
         onClick={() =>
           dispatch({
             type: "ISCLICK",
@@ -136,7 +136,7 @@ const Home = (props) => {
         }
       >
         IsClick
-      </button>
+      </button> */}
 
       {/* <Link href="/videos">
         <a> Videos</a>

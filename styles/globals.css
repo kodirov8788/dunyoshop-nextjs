@@ -45,6 +45,18 @@ img {
 /* ----------end of the Banner------------- */
 
 /* ----------------------------------- */
+
+.ytp-chrome-top-buttons {
+  display: none !important;
+}
+.ytp-chrome-top {
+  display: none !important;
+}
+
+.ytp-show-cards-title {
+  display: none !important;
+}
+
 /* ----------- Loading ------------- */
 @import url("./loading.css");
 

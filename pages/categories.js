@@ -55,7 +55,7 @@ const Categories = () => {
   return (
     <div className="col-md-6 mx-auto my-3">
       <Head>
-        <title>Categories</title>
+        <title>{t.Categories}</title>
       </Head>
 
       <div className="input-group mb-3">

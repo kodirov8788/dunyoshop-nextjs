@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-sync-scripts */
 /* eslint-disable react/jsx-key */
 /* eslint-disable @next/next/no-img-element */
 import Head from "next/head";
@@ -9,7 +10,8 @@ import valid from "../utils/valid";
 import { patchData } from "../utils/fetchData";
 import ReactPlayer from "react-player";
 import { imageUpload } from "../utils/imageUpload";
-
+import { Player } from "video-react";
+import "../node_modules/video-react/dist/video-react.css";
 const Profile = () => {
   const initialSate = {
     avatar: "",
@@ -30,9 +32,11 @@ const Profile = () => {
   const [item3, setItem3] = useState([]);
   const [item6, setItem6] = useState(false);
   const [video, setVideo] = useState([]);
+  const [video2, setVideo2] = useState([]);
   const box = item3.filter((pro) => pro.length !== 0);
 
   console.log("this is video", video?.items);
+  console.log("this is video2", video2);
   // console.log("this is video details", video?.items.snippet);
 
   // -------------Video and Rasm ------------------
@@ -45,6 +49,7 @@ const Profile = () => {
   );
   const pr5 = pr3.map((pr3inner) => pr3inner[0]);
   const pr6 = pr5.map((pr5inner) => pr5inner.video);
+  console.log("pr6", pr6);
   // ----------------------------------
   const { avatar, name, password, cf_password } = data;
 
@@ -282,7 +287,17 @@ const Profile = () => {
                 {orders.map((order) => (
                   <tr key={order._id}>
                     <td className="p-2">
-                      <Link href={`/order/${order._id}`}>
+                      <Link
+                        // href={`/order/${order._id}`}
+                        href={{
+                          // pathname: `/order/${order._id}`,
+                          // query: { order: order },
+                          pathname: `/order/${order._id}`,
+                          query: {
+                            id: order.id, // pass the id
+                          },
+                        }}
+                      >
                         <a>{order._id}</a>
                       </Link>
                     </td>
@@ -311,19 +326,29 @@ const Profile = () => {
           </div>
         </div>
       </section>
+      {/* {pr6[1]} */}
+      {/* <iframe
+        src={pr6[2]}
+        width="1280"
+        height="686"
+        frameBorder="0"
+        allow="autoplay; fullscreen; picture-in-picture"
+        allowFullScreen
+        title="p1.mp4"
+      ></iframe> */}
       {item6 ? (
         <>
           <div className="profile__videoSection">
             <div className="profile__mainVideo">
               <ReactPlayer
+                url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
                 borderRadius="4px"
                 width="100%"
                 height="500px"
+                className="player"
                 playing={true}
-                muted={true}
-                loop={true}
                 controls={true}
-                url={`https://www.youtube.com/watch?v=${video?.items[tab].snippet.resourceId.videoId}`}
+                showinfo={true}
               />
             </div>
             <div className="profile__leftSide">
