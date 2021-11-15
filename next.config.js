@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BASE_URL: "https://www.dunyoshop.uz/",
+    BASE_URL: "https://dunyoshop.uz/",
     // BASE_URL: "http://localhost:3000/",
 
     MONGODB_URL:
