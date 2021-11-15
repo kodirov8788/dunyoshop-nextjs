@@ -70,46 +70,6 @@ function MediaNavBar() {
     );
   };
 
-  const loggedRouter = () => {
-    return (
-      <div
-        onMouseEnter={() => setUserOpen(true)}
-        onMouseLeave={() => setUserOpen(false)}
-      >
-        <div className="navbart__userToggle">
-          <img
-            src={auth.user.avatar}
-            alt={auth.user.avatar}
-            style={{
-              borderRadius: "50%",
-              width: "30px",
-              height: "30px",
-              // transform: "translateY(-3px)",
-              // marginRight: "3px",
-            }}
-          />
-          <p className="navbar__userName">{emailCut}</p>
-        </div>
-
-        <div
-          className={`${
-            userOpen
-              ? "navbar__customList"
-              : "navbar__customList navbar__customList__non"
-          }`}
-        >
-          <Link href="/profile">
-            <a className="navbar__userlistItem">Profile</a>
-          </Link>
-          {auth.user.role === "admin" && adminRouter()}
-          <span className="navbar__userlistItem" onClick={handleLogout}>
-            Logout
-          </span>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <nav
       className={`${

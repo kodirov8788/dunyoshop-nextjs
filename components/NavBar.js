@@ -14,8 +14,8 @@ import { BiLogInCircle } from "react-icons/bi";
 import Category from "./Category";
 import Search from "./Search";
 import Filter from "./Filter";
-import en from "../locales/en";
-import uz from "../locales/uz";
+// import en from "../locales/en";
+// import uz from "../locales/uz";
 import LanguageSelect from "../pages/LanguageSelect";
 function NavBar() {
   const router = useRouter();
@@ -115,7 +115,7 @@ function NavBar() {
   };
 
   const { locale } = router;
-  const t = locale === "en" ? en : uz;
+  // const t = locale === "en" ? en : uz;
   // console.log(language);
   return (
     <>
@@ -151,7 +151,8 @@ function NavBar() {
               <li className="nav__listItem">
                 <Link href="/signin">
                   <a className={"nav__link" + isActive("/signin")}>
-                    <BiLogInCircle /> {t.Sign__in}
+                    <BiLogInCircle />
+                    {/* {t.Sign__in} */}
                   </a>
                 </Link>
               </li>
