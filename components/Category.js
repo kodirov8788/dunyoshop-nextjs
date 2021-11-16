@@ -7,18 +7,27 @@ import filterSearch from "../utils/filterSearch";
 import { useRouter } from "next/router";
 import { BsThreeDots } from "react-icons/bs";
 import { DataContext } from "../store/GlobalState";
-
+import en from "../locales/en";
+import uz from "../locales/uz";
 const Category = () => {
   const { state } = useContext(DataContext);
   const { categories } = state;
   const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   const [status, setStatus] = useState(false);
-  const [categoryId, setCategoryId] = useState("Category");
+  const [categoryId, setCategoryId] = useState("");
+
+  useEffect(() => {
+    locale === "en"
+      ? setCategoryId("Category")
+      : setCategoryId("kategoriyalar");
+  }, [locale]);
   // console.log("this is category", categoryId);
 
   const click = () => {
     filterSearch({ router, category: null });
-    setCategoryId("Category");
+    setCategoryId(ctg);
   };
   return (
     <>
@@ -33,11 +42,7 @@ const Category = () => {
             <p>All</p>
             {/* <div className="signal"></div> */}
 
-            {categoryId === "Category" || null || "" ? (
-              <div className="signal"></div>
-            ) : (
-              ""
-            )}
+            {categoryId || null || "" ? <div className="signal"></div> : ""}
           </li>
 
           {categories.map((item) => (

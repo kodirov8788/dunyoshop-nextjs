@@ -6,6 +6,9 @@ import { DataContext } from "../../store/GlobalState";
 import { addToCart } from "../../store/Actions";
 import { GrView } from "react-icons/gr";
 import { BsFillCartPlusFill } from "react-icons/bs";
+import { useRouter } from "next/router";
+import en from "../../locales/en";
+import uz from "../../locales/uz";
 const ProductItem = ({ product, handleCheck }) => {
   const [salebox, setSalebox] = useState(false);
 
@@ -16,14 +19,16 @@ const ProductItem = ({ product, handleCheck }) => {
   }, []);
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth } = state;
-
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   const userLink = () => {
     return (
       <>
         <Link href={`product/${product._id}`}>
           <div className="btn__view">
             <GrView />
-            <p>View</p>
+            <p>{t.view}</p>
           </div>
         </Link>
         <button
@@ -42,7 +47,7 @@ const ProductItem = ({ product, handleCheck }) => {
       <>
         <Link href={`create/${product._id}`}>
           <a className="btn btn-info" style={{ marginRight: "5px", flex: 1 }}>
-            Edit
+            {t.edit}
           </a>
         </Link>
         <button
@@ -64,7 +69,7 @@ const ProductItem = ({ product, handleCheck }) => {
             })
           }
         >
-          Delete
+          {t.delete_product}
         </button>
       </>
     );

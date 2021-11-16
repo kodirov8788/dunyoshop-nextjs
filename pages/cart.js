@@ -6,8 +6,12 @@ import CartItem from "../components/CartItem";
 import Link from "next/link";
 import { getData, postData } from "../utils/fetchData";
 import { useRouter } from "next/router";
-
+import en from "../locales/en";
+import uz from "../locales/uz";
 const Cart = () => {
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   const { state, dispatch } = useContext(DataContext);
   const { cart, auth, orders } = state;
 
@@ -17,8 +21,6 @@ const Cart = () => {
   const [mobile, setMobile] = useState("");
 
   const [callback, setCallback] = useState(false);
-  const router = useRouter();
-
   useEffect(() => {
     const getTotal = () => {
       const res = cart.reduce((prev, item) => {
@@ -65,7 +67,7 @@ const Cart = () => {
     if (!address || !mobile)
       return dispatch({
         type: "NOTIFY",
-        payload: { error: "Please add your address and mobile." },
+        payload: { error: t.cart_mobile_address },
       });
 
     let newCart = [];
@@ -81,7 +83,7 @@ const Cart = () => {
       return dispatch({
         type: "NOTIFY",
         payload: {
-          error: "The product is out of stock or the quantity is insufficient.",
+          error: t.cart__error,
         },
       });
     }
@@ -109,8 +111,9 @@ const Cart = () => {
   if (cart.length === 0)
     return (
       <img
+        style={{ objectPosition: "center", objectFit: "contain" }}
         className="img-responsive w-100"
-        src="/empty_cart.jpg"
+        src="/shopping.jpeg"
         alt="not empty"
       />
     );
@@ -118,11 +121,11 @@ const Cart = () => {
   return (
     <div className="row mx-auto">
       <Head>
-        <title>Cart Page</title>
+        <title>{t.cart_page}</title>
       </Head>
 
       <div className="col-md-8 text-secondary table-responsive my-3">
-        <h2 className="text-uppercase">Shopping Cart</h2>
+        <h2>{t.shopping__cart}</h2>
 
         <table className="table my-3 ">
           <tbody>
@@ -138,11 +141,11 @@ const Cart = () => {
         </table>
       </div>
 
-      <div className="col-md-4 my-3 text-right text-uppercase text-secondary">
+      <div className="col-md-4 my-3 text-right text-secondary">
         <form>
-          <h2>Shipping</h2>
+          <h2>{t.shipping}</h2>
 
-          <label htmlFor="address">Address</label>
+          <label htmlFor="address">{t.address}</label>
           <input
             type="text"
             name="address"
@@ -152,7 +155,7 @@ const Cart = () => {
             onChange={(e) => setAddress(e.target.value)}
           />
 
-          <label htmlFor="mobile">Mobile</label>
+          <label htmlFor="mobile">{t.mobile}</label>
           <input
             type="text"
             name="mobile"
@@ -164,12 +167,12 @@ const Cart = () => {
         </form>
 
         <h3>
-          Total: <span className="text-danger">${total}</span>
+          {t.total}: <span className="text-danger">${total}</span>
         </h3>
 
         <Link href={auth.user ? "#!" : "/signin"}>
           <a className="btn btn-dark my-2" onClick={handlePayment}>
-            Proceed with payment
+            {t.cart__order}
           </a>
         </Link>
       </div>

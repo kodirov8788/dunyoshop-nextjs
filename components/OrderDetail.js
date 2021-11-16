@@ -2,10 +2,14 @@
 import Link from "next/link";
 import { patchData } from "../utils/fetchData";
 import { updateItem } from "../store/Actions";
-
+import { useRouter } from "next/router";
+import en from "../locales/en";
+import uz from "../locales/uz";
 const OrderDetail = ({ orderDetail, state, dispatch }) => {
   const { auth, orders } = state;
-
+  const router = useRouter();
+  const { locale } = router;
+  const t = locale === "en" ? en : uz;
   console.log("this is orderData", orderDetail);
 
   const handleDelivered = (order) => {
@@ -47,14 +51,22 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
           className="row justify-content-around"
         >
           <div className="text-uppercase my-3" style={{ maxWidth: "600px" }}>
-            <h4 className="text-break">Order {order._id}</h4>
+            <h4 className="text-break">
+              {t.order_ID} : {order._id}
+            </h4>
 
             <div className="mt-4 text-break">
-              <h3>Shipping</h3>
-              <p>Name: {order.user.name}</p>
+              <h3>{t.shipping}</h3>
+              <p>
+                {t.order_name} : {order.user.name}
+              </p>
               <p>Email: {order.user.email}</p>
-              <p>Address: {order.address}</p>
-              <p>Mobile: {order.mobile}</p>
+              <p>
+                {t.address}: {order.address}
+              </p>
+              <p>
+                {t.mobile}: {order.mobile}
+              </p>
 
               <div
                 className={`alert text-break ${
@@ -64,31 +76,19 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                 role="alert"
               >
                 {order.delivered
-                  ? `Deliverd on ${order.updatedAt}`
-                  : "Not Delivered"}
+                  ? `${t.Delivered_on} ${order.updatedAt}`
+                  : t.not_delivered}
                 {auth.user.role === "admin" && !order.delivered && (
                   <button
                     className="btn btn-dark text-uppercase"
                     onClick={() => handleDelivered(order)}
                   >
-                    Mark as delivered
+                    {t.Mark_as_delivered}
                   </button>
                 )}
               </div>
 
-              <h3>Payment</h3>
-              {order.method && (
-                <h6>
-                  Method: <em>{order.method}</em>
-                </h6>
-              )}
-
-              {order.paymentId && (
-                <p>
-                  PaymentId: <em>{order.paymentId}</em>
-                </p>
-              )}
-
+              <h3>{t.payment}</h3>
               <div
                 className={`alert ${
                   order.paid ? "alert-success" : "alert-danger"
@@ -96,11 +96,13 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                         d-flex justify-content-between align-items-center`}
                 role="alert"
               >
-                {order.paid ? `Paid on ${order.dateOfPayment}` : "Not Paid"}
+                {order.paid
+                  ? `${t.paid_on} ${order.dateOfPayment}`
+                  : `${t.not_paid}`}
               </div>
 
               <div>
-                <h3>Order Items</h3>
+                <h3>{t.order_items}</h3>
                 {order.cart.map((item) => (
                   <div
                     className="row border-bottom mx-0 p-2 justify-content-betwenn
@@ -136,7 +138,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
 
           {!order.paid && auth.user.role !== "admin" && (
             <div className="order__payment">
-              <h2 className=" mb-3 "> Pay by this services </h2>
+              <h2 className=" mb-3 "> {t.Pay_by_this_services} </h2>
 
               <div className="payment__imgs">
                 <img
@@ -157,7 +159,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                   alt=""
                 />
               </div>
-              <h2>contact us</h2>
+              <h2>{t.contact_us}</h2>
 
               <div className="order__telegram">
                 <div className="order__contactDetail">
@@ -196,7 +198,7 @@ const OrderDetail = ({ orderDetail, state, dispatch }) => {
                   // border: "1px solid #000",
                 }}
               >
-                Total: ${order.total}
+                {t.total}: ${order.total}
               </h2>
             </div>
           )}

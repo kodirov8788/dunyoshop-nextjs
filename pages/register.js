@@ -9,7 +9,6 @@ import en from "../locales/en";
 import uz from "../locales/uz";
 const Register = () => {
   const router = useRouter();
-
   const { locale } = router;
   const t = locale === "en" ? en : uz;
   const initialState = {

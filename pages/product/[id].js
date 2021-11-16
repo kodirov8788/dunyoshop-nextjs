@@ -87,16 +87,22 @@ const DetailProduct = (props) => {
 
       <div className="col-md-6 m-3 ">
         <h2 className="text-uppercase">{product.title}</h2>
-        <h5 className="text-danger">${product.price}</h5>
+        <h5 className="text-danger">
+          {t.price}: ${product.price}
+        </h5>
 
         <div className="row mx-0 d-flex justify-content-between">
           {product.inStock > 0 ? (
-            <h6 className="text-danger">In Stock: {product.inStock}</h6>
+            <h6 className="text-danger">
+              {t.InStock}: {product.inStock}
+            </h6>
           ) : (
             <h6 className="text-danger">Out Stock</h6>
           )}
 
-          <h6 className="text-danger">Sold: {product.sold}</h6>
+          <h6 className="text-danger">
+            {t.sold}: {product.sold}
+          </h6>
         </div>
 
         <div className="my-2">{product.description}</div>
