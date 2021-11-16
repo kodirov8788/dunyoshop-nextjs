@@ -225,7 +225,7 @@ const Home = (props) => {
         </button>
       )} */}
 
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 };
