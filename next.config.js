@@ -1,6 +1,6 @@
 module.exports = {
   env: {
-    BASE_URL: "https://dunyoshop-next.vercel.app/",
+    BASE_URL: "https://dunyoshop-next.vercel.app",
     // BASE_URL: "http://localhost:3000/",
     MONGODB_URL:
       "mongodb+srv://dunyoshop:84hfjGeD4ScN1G1W@cluster0.nscxl.mongodb.net/collection?retryWrites=true&w=majority",
